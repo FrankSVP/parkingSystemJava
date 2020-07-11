@@ -28,3 +28,86 @@ fkpriceday	integer,
 FOREIGN KEY (fkpricehour) REFERENCES rateour (id),
 FOREIGN KEY (fkpriceday) REFERENCES rateday (id)
 );
+create table marcacar (
+id SERIAL primary key,
+marcacar varchar (50)
+);
+
+create table statecar (
+id SERIAL primary key,
+statecar varchar (50)
+);
+
+create table Car (
+id SERIAL primary key,
+numbercar varchar (6),
+color varchar (30),
+fkmarcacar integer,
+fktypecar  integer,
+fkstatecar  integer,
+FOREIGN KEY (fkmarcacar) REFERENCES marcacar (id),
+FOREIGN KEY (fktypecar) REFERENCES typecar (id),
+FOREIGN KEY (fkstatecar) REFERENCES statecar (id)
+);
+
+create table sex (
+id SERIAL primary key,
+sex varchar (20) 
+);
+
+create table client (
+id SERIAL primary key,
+firstname varchar (100), 
+lasttname varchar (100),
+identification varchar (8),
+phone integer,
+address varchar(200),
+fksexo integer,
+fkcar integer,
+FOREIGN KEY (fksexo) REFERENCES sex (id),
+FOREIGN KEY (fkcar) REFERENCES Car (id)
+);
+create table typeaccount (
+id SERIAL primary key,
+typeaccount varchar (20) 
+);
+create table account (
+id SERIAL primary key,
+userid varchar (10),
+pass varchar(10),
+fktypeaccount integer,
+FOREIGN KEY (fktypeaccount) REFERENCES typeaccount (id)
+);
+create table typeaccount (
+id SERIAL primary key,
+typeaccount varchar (20) 
+);
+create table states (
+id SERIAL primary key,
+states varchar (30),
+spaces integer
+);
+create table parking (
+id SERIAL primary key,
+datetimestart timestamp,
+datetimeend timestamp,
+fkclient integer,
+fkaccount integer,
+fkstates integer,
+FOREIGN KEY (fkclient) REFERENCES client (id),
+FOREIGN KEY (fkaccount) REFERENCES account (id),
+FOREIGN KEY (fkstates) REFERENCES states (id)
+);
+create table typepay (
+id SERIAL primary key,
+typepay varchar (30)
+);
+create table pay (
+id SERIAL primary key,
+mount decimal (4,2),
+datetimepay timestamp,
+fkparking integer,
+fktypepay integer,
+FOREIGN KEY (fkparking) REFERENCES parking (id),
+FOREIGN KEY (fktypepay) REFERENCES typepay (id)
+);
