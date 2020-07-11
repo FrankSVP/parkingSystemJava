@@ -1,0 +1,9 @@
+//CREACIÓN DE LA BASE DE DATOS
+CREATE DATABASE "ParkinDB"
+    WITH 
+    OWNER = "UserParkingDB"
+    ENCODING = 'UTF8'
+    CONNECTION LIMIT = -1;
+
+COMMENT ON DATABASE "ParkinDB"
+    IS 'Esta base de datos pertenece al aplicativo Parking en Java Swing';
