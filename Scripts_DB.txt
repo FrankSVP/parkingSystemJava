@@ -7,3 +7,24 @@ CREATE DATABASE "ParkinDB"
 
 COMMENT ON DATABASE "ParkinDB"
     IS 'Esta base de datos pertenece al aplicativo Parking en Java Swing';
+
+//CREACIÓN DE TABLAS
+
+create table rateday (
+id SERIAL primary key,
+priceday decimal (4,2)
+);
+
+create table rateour (
+id SERIAL primary key,
+pricehour decimal (4,2)
+);
+
+create table typecar (
+id SERIAL primary key,
+typecar varchar(50),
+fkpricehour integer,
+fkpriceday	integer,
+FOREIGN KEY (fkpricehour) REFERENCES rateour (id),
+FOREIGN KEY (fkpriceday) REFERENCES rateday (id)
+);
