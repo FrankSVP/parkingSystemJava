@@ -78,6 +78,11 @@ public class FormMenu extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(31, 171, 137));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Asignar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setForeground(new java.awt.Color(45, 45, 45));
         jLabel7.setText("Lista de Autos en el Parking");
@@ -104,9 +109,29 @@ public class FormMenu extends javax.swing.JFrame {
         jButton3.setText("Cobrar");
 
         jMenu1.setText("Clientes");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Usuarios");
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu2MouseClicked(evt);
+            }
+        });
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Tarifa");
@@ -238,6 +263,29 @@ public class FormMenu extends javax.swing.JFrame {
        FormEstadoAuto formestadoAuto = new FormEstadoAuto();
        formestadoAuto.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+     
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+         FormClientes formclientes = new FormClientes();
+       formclientes.setVisible(true);
+    }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+     
+    }//GEN-LAST:event_jMenu2ActionPerformed
+
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+         FormUsuarios formusuarios = new FormUsuarios();
+       formusuarios.setVisible(true);
+    }//GEN-LAST:event_jMenu2MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        FormAuto formauto = new FormAuto();
+       formauto.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
