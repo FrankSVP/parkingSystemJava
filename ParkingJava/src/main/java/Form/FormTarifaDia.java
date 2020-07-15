@@ -20,6 +20,9 @@ public class FormTarifaDia extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.decode("#FFFFFF"));
+        Clases.CTarifaDia ctarifadia = new Clases.CTarifaDia();
+        ctarifadia.MostrarTarifaDia(tbtarifadia);
+        
     }
 
     /**

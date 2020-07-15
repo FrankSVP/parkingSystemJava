@@ -111,3 +111,13 @@ fktypepay integer,
 FOREIGN KEY (fkparking) REFERENCES parking (id),
 FOREIGN KEY (fktypepay) REFERENCES typepay (id)
 );
+
+//VIEWS DE LA BASE DE DATOS
+
+//Muestra todas las tarifas por día
+create view totaltarifadia as
+select * from rateday;
+
+//Muestra todas las tarifas por hora
+create view totaltarifahora as
+select * from ratehour;

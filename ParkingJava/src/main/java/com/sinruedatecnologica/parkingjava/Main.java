@@ -16,6 +16,8 @@ public class Main {
     public static void main(String[] args) {
         Form.FormLogin formlogin = new Form.FormLogin();
         formlogin.setVisible(true);
+        
+      
     }
     
 }
