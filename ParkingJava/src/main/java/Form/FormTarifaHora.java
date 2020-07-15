@@ -20,6 +20,8 @@ public class FormTarifaHora extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.decode("#FFFFFF"));
+        Clases.CTarifaHora ctarifahora = new Clases.CTarifaHora();
+        ctarifahora.MostrarTarifaHora(tbtarfiaHora);
     }
 
     /**

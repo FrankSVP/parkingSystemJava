@@ -17,9 +17,9 @@ import javax.swing.table.TableRowSorter;
  *
  * @author FrankS
  */
-public class CTarifaDia {
+public class CTarifaHora {
     
-          public void MostrarTarifaDia(JTable tablatotaltarfiadia)
+    public void MostrarTarifaHora(JTable TablaTotalTarifaHora)
     {
       
         Conexion.CConexion conexion = new Conexion.CConexion();
@@ -28,21 +28,21 @@ public class CTarifaDia {
      DefaultTableModel modelo = new DefaultTableModel();
      
        TableRowSorter<TableModel>OrdenaTabla = new TableRowSorter<TableModel>(modelo);
-       tablatotaltarfiadia.setRowSorter(OrdenaTabla);
+       TablaTotalTarifaHora.setRowSorter(OrdenaTabla);
                
         String sql="";
         
        
        
      modelo.addColumn("Id");
-     modelo.addColumn("PrecioDia");
+     modelo.addColumn("PrecioHora");
     
      
-     tablatotaltarfiadia.setModel(modelo);
+     TablaTotalTarifaHora.setModel(modelo);
      
     
      
-     sql = "select * from totaltarifadia;";
+     sql = "select * from totaltarifahora;";
     
     
     String [] datos= new String [2];
@@ -65,7 +65,7 @@ public class CTarifaDia {
                
            }
            
-           tablatotaltarfiadia.setModel(modelo);
+           TablaTotalTarifaHora.setModel(modelo);
            
           
            
