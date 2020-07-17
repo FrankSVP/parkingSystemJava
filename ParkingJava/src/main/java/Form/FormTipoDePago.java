@@ -20,6 +20,8 @@ public class FormTipoDePago extends javax.swing.JFrame {
         initComponents();
          setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.decode("#FFFFFF"));
+        Clases.CTipoPago tipopago = new Clases.CTipoPago();
+        tipopago.MostrarTipoPago(tbtipopago);
     }
 
     /**

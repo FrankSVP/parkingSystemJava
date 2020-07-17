@@ -121,3 +121,33 @@ select * from rateday;
 //Muestra todas las tarifas por hora
 create view totaltarifahora as
 select * from ratehour;
+//Muestra el total de tipo de pago e ingresa 3 registros
+insert into typepay (typepay) values ('Efectivo');
+insert into typepay (typepay) values ('Tarjeta');
+insert into typepay (typepay) values ('Qr');
+
+create view totaltipopago as
+select * from typepay;
+
+//Muestra el total de marcas de auto e ingresa 3 registros
+insert into marcacar (marcacar) values ('Toyota');
+insert into marcacar (marcacar) values ('Subaru');
+insert into marcacar (marcacar) values ('Nissan');
+create view totalmarcaauto as
+select * from marcacar;
+
+//Muestra el total de estados de auto e ingresa 3 registros
+insert into statecar (statecar) values ('Excelente');
+insert into statecar (statecar) values ('Malogrado');
+insert into statecar (statecar) values ('Observado');
+create view totalestadoauto as
+select * from statecar;
+
+//Se incorporaron los 2 tipos de usuarios
+insert into typeaccount(typeaccount) values ('Administrador');
+insert into typeaccount(typeaccount) values ('Empleado');
+
+
+//Se incorporaron los 2 tipos de sexo
+insert into sex(sex) values ('Masculino');
+insert into sex(sex) values ('Femenino');

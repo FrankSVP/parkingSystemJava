@@ -20,6 +20,8 @@ public class FormMarcaAuto extends javax.swing.JFrame {
         initComponents();
          setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.decode("#FFFFFF"));
+        Clases.CMarcaAuto marcaauto = new Clases.CMarcaAuto();
+        marcaauto.MostrarMarcaAuto(tbmarcaauto);
     }
 
     /**

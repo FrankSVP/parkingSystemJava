@@ -20,6 +20,8 @@ public class FormEstadoAuto extends javax.swing.JFrame {
         initComponents();
          setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.decode("#FFFFFF"));
+        Clases.CEstadoAuto estadoauto = new Clases.CEstadoAuto();
+        estadoauto.MostrarEstadoAuto(tbestadoauto);
     }
 
     /**
