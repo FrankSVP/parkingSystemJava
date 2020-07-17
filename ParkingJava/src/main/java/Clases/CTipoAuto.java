@@ -19,8 +19,9 @@ import javax.swing.table.TableRowSorter;
  *
  * @author FrankS
  */
-public class CEstadoAuto {
-        public void MostrarEstadoAuto(JTable TablaTotalEstadoAuto)
+public class CTipoAuto {
+    
+           public void MostrarTipoAuto(JTable tablatotaltatipoauto)
     {
       
         Conexion.CConexion conexion = new Conexion.CConexion();
@@ -29,21 +30,21 @@ public class CEstadoAuto {
      DefaultTableModel modelo = new DefaultTableModel();
      
        TableRowSorter<TableModel>OrdenaTabla = new TableRowSorter<TableModel>(modelo);
-       TablaTotalEstadoAuto.setRowSorter(OrdenaTabla);
+       tablatotaltatipoauto.setRowSorter(OrdenaTabla);
                
         String sql="";
         
        
        
      modelo.addColumn("Id");
-     modelo.addColumn("EstadoAuto");
+     modelo.addColumn("TipoAuto");
     
      
-     TablaTotalEstadoAuto.setModel(modelo);
+     tablatotaltatipoauto.setModel(modelo);
      
     
      
-     sql = "select * from totalestadoauto;";
+     sql = "select * from totaltipoauto;";
     
     
     String [] datos= new String [2];
@@ -66,7 +67,7 @@ public class CEstadoAuto {
                
            }
            
-           TablaTotalEstadoAuto.setModel(modelo);
+           tablatotaltatipoauto.setModel(modelo);
            
           
            
@@ -78,8 +79,8 @@ public class CEstadoAuto {
        
        
     }
-        
-         public void ComboEstadoAuto(JComboBox cbestadoauto)
+           
+         public void ComboTipoAuto(JComboBox cbtipoauto)
     {
       Conexion.CConexion conexion = new Conexion.CConexion();
       
@@ -87,9 +88,9 @@ public class CEstadoAuto {
          
         String sql="";
 
-     cbestadoauto.setModel(modelo);
+     cbtipoauto.setModel(modelo);
 
-     sql = "select * from comboestadoauto;";
+     sql = "select * from combotipoauto;";
  
     Statement st;
     
@@ -97,15 +98,15 @@ public class CEstadoAuto {
             st = conexion.ConexionBD().createStatement(); 
             
             ResultSet rs =  st.executeQuery(sql);
-            cbestadoauto.addItem("Estado");
+            cbtipoauto.addItem("Tipo de auto");
            while(rs.next())
             {
                
                 String nombre=rs.getString(1);
 
-                cbestadoauto.addItem(nombre);
+                cbtipoauto.addItem(nombre);
             }
-           cbestadoauto.setModel(modelo);
+           cbtipoauto.setModel(modelo);
            
    } 
        catch (SQLException ex) 

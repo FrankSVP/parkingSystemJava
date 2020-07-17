@@ -22,12 +22,18 @@ pricehour decimal (4,2)
 
 create table typecar (
 id SERIAL primary key,
-typecar varchar(50),
-fkpricehour integer,
-fkpriceday	integer,
-FOREIGN KEY (fkpricehour) REFERENCES rateour (id),
-FOREIGN KEY (fkpriceday) REFERENCES rateday (id)
+typcar varchar (50)
 );
+
+create table ratecar (
+id SERIAL primary key,
+fktypecar int,
+fkratehour int,
+fkrateday int,
+FOREIGN KEY (fkratehour) REFERENCES ratehour (id),
+FOREIGN KEY (fkrateday) REFERENCES rateday (id)
+);
+
 create table marcacar (
 id SERIAL primary key,
 marcacar varchar (50)
@@ -151,3 +157,37 @@ insert into typeaccount(typeaccount) values ('Empleado');
 //Se incorporaron los 2 tipos de sexo
 insert into sex(sex) values ('Masculino');
 insert into sex(sex) values ('Femenino');
+
+
+//Vista para mostrar solo los precios por hora en el combobox
+create view combopreciohora as
+select ratehour.pricehour from ratehour;
+select * from combopreciohora;
+
+//Se insertó 3 registros de los tipos de autos
+insert into typecar (typcar) values ('Auto');
+insert into typecar (typcar) values ('Camioneta');
+insert into typecar (typcar) values ('Bus');
+
+
+//Vistas de total de tipos de auto y combo de tipos de auto
+create view totaltipoauto as
+select * from typecar;
+create view combotipoauto as
+select typecar.typcar from typecar;
+
+//Vista de combotipo de usuario
+create view combotipousuario as
+select typeaccount.typeaccount from typeaccount;
+
+//Vista de combosexo
+create view combosexo as
+select sex.sex from sex;
+
+//Vista de combo tipo de auto
+create view combotipoauto as
+select typecar.typcar from typecar;
+
+//Vista de commboestado de auto
+create view comboestadoauto as
+select statecar.statecar from statecar;

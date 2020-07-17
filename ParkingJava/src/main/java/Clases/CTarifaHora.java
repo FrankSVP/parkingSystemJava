@@ -8,6 +8,8 @@ package Clases;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -77,4 +79,44 @@ public class CTarifaHora {
        
        
     }
+    
+    public void ComboPrecioHora(JComboBox cbpreciohora)
+    {
+      Conexion.CConexion conexion = new Conexion.CConexion();
+      
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+         
+        String sql="";
+
+     cbpreciohora.setModel(modelo);
+
+     sql = "select * from combopreciohora;";
+ 
+    Statement st;
+    
+       try {
+            st = conexion.ConexionBD().createStatement(); 
+            
+            ResultSet rs =  st.executeQuery(sql);
+            cbpreciohora.addItem("Seleccione una tarifa");
+           while(rs.next())
+            {
+               
+                String nombre=rs.getString(1);
+
+                cbpreciohora.addItem(nombre);
+            }
+           cbpreciohora.setModel(modelo);
+           
+   } 
+       catch (SQLException ex) 
+       {
+           System.out.println("Error:+ " +ex.toString());
+                   
+       }
+       
+       
+    }
+    
+    
 }
