@@ -190,4 +190,61 @@ select typecar.typcar from typecar;
 
 //Vista de commboestado de auto
 create view comboestadoauto as
+
+//Vista de Total de Usuarios
 select statecar.statecar from statecar;
+
+create view totalusuarios as
+select account.id, account.userid,account.pass, typeaccount.typeaccount from account
+INNER JOIN typeaccount ON account.fktypeaccount = typeaccount.id ;
+
+//FUNCIONES//
+
+//Función para mostrar id de tipo de auto por nombre de auto
+
+CREATE OR REPLACE Function mostraridportipopauto (nombre varchar)returns integer
+AS
+$$
+select typecar.id from typecar where typecar.typcar = nombre;
+$$
+language SQL
+
+//Función para mostrar id de precio por hora por precio por hora
+CREATE OR REPLACE Function mostraridporpreciohora (precio decimal)returns integer
+AS
+$$
+select ratehour.id from ratehour where ratehour.pricehour = precio;
+$$
+language SQL
+
+//Función para mostrar id de precio por dia por precio por Dia
+CREATE OR REPLACE Function mostraridporpreciodia (precio decimal)returns integer
+AS
+$$
+select rateday.id from rateday where rateday.priceday = precio;
+$$
+language SQL
+
+//Función para mostrar id de usuario por dia tipo de usuario
+CREATE OR REPLACE Function mostraridportipousuario (usuario varchar)returns integer
+AS
+$$
+select typeaccount.id from typeaccount where typeaccount.typeaccount = usuario;
+$$
+language SQL
+
+//INSERTS
+
+//Función de insertar un nuevo usuario
+CREATE OR REPLACE Function insertarusuario (usuario varchar, pas varchar, fktipo integer)returns void
+AS
+$$
+insert into account (userid,pass,fktypeaccount) values (usuario,pas,fktipo);
+$$
+language SQL
+
+select insertarusuario('Frank','123',1);
+
+
+
+

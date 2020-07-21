@@ -98,7 +98,7 @@ public class CTipoAuto {
             st = conexion.ConexionBD().createStatement(); 
             
             ResultSet rs =  st.executeQuery(sql);
-            cbtipoauto.addItem("Tipo de auto");
+           // cbtipoauto.addItem("Tipo de auto");
            while(rs.next())
             {
                
