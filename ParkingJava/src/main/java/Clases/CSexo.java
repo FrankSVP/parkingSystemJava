@@ -5,11 +5,15 @@
  */
 package Clases;
 
+import java.math.BigDecimal;
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -35,7 +39,7 @@ public class CSexo {
             st = conexion.ConexionBD().createStatement(); 
             
             ResultSet rs =  st.executeQuery(sql);
-            cbsexo.addItem("Sexo");
+           // cbsexo.addItem("Sexo");
            while(rs.next())
             {
                
@@ -54,4 +58,35 @@ public class CSexo {
        
        
     }
+            
+   public void MostrarIdPorSexo(JComboBox combosexo, JTextField codigo)               
+        {
+            
+            Conexion.CConexion conexion = new Conexion.CConexion();
+         
+        String consulta =("select mostraridporsexo(?)");
+ 
+               try {
+              
+         CallableStatement cs =conexion.ConexionBD().prepareCall(consulta);
+         cs.setString(1,combosexo.getSelectedItem().toString());
+     
+         cs.execute();
+         ResultSet rs = cs.executeQuery();
+                 
+         
+                if(rs.next())
+                {
+                    
+                    codigo.setText(rs.getString("mostraridporsexo"));
+                   
+                }
+              
+               } 
+               catch (SQLException ex) 
+               {
+                    JOptionPane.showMessageDialog(null,"Error:" + ex.toString());
+               }
+        
+        }
 }

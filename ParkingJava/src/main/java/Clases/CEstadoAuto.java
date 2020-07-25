@@ -100,7 +100,7 @@ public class CEstadoAuto {
             st = conexion.ConexionBD().createStatement(); 
             
             ResultSet rs =  st.executeQuery(sql);
-            cbestadoauto.addItem("Estado");
+            //cbestadoauto.addItem("Estado");
            while(rs.next())
             {
                
@@ -148,4 +148,36 @@ public class CEstadoAuto {
                }
     
     }
+     
+        public void MostrarIdPorEstadoAuto(JComboBox comboEstadoAuto, JTextField codigo)               
+        {
+            
+            Conexion.CConexion conexion = new Conexion.CConexion();
+         
+       //   double tarifdiadb = Double.parseDouble(combotarifadia.getSelectedItem().toString());
+          
+        String consulta =("select mostraridporestadoauto(?)");
+       
+               try {
+              
+         CallableStatement cs =conexion.ConexionBD().prepareCall(consulta);
+         cs.setString(1,comboEstadoAuto.getSelectedItem().toString());
+         cs.execute();
+         ResultSet rs = cs.executeQuery();
+                 
+         
+                if(rs.next())
+                {
+                    
+                    codigo.setText(rs.getString("mostraridporestadoauto"));
+                   
+                }
+              
+               } 
+               catch (SQLException ex) 
+               {
+                    JOptionPane.showMessageDialog(null,"Error:" + ex.toString());
+               }
+        
+        }
 }

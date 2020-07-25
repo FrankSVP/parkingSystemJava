@@ -118,7 +118,7 @@ FOREIGN KEY (fkparking) REFERENCES parking (id),
 FOREIGN KEY (fktypepay) REFERENCES typepay (id)
 );
 
-//VIEWS DE LA BASE DE DATOS
+//--------------------------------------------------------VIEWS ----------------------------------------//
 
 //Muestra todas las tarifas por día
 create view totaltarifadia as
@@ -205,7 +205,14 @@ INNER JOIN typecar ON ratecar.fktypecar = typecar.id
 INNER JOIN ratehour ON ratecar.fkratehour = ratehour.id
 INNER JOIN rateday ON ratecar.fkrateday= rateday.id
 
-//FUNCIONES//
+//Vista de Total de Autos
+create view totalautos as
+select car.id, car.numbercar, car.color, marcacar.marcacar,typecar.typcar, statecar.statecar from car
+INNER JOIN marcacar  ON marcacar.id= car.fkmarcacar
+INNER JOIN typecar ON typecar.id = car.fktypecar
+INNER JOIN statecar ON statecar.id = car.fkstatecar
+
+//---------------------------------------------------FUNCIONES---------------------------------//
 
 //Función para mostrar id de tipo de auto por nombre de auto
 
@@ -240,7 +247,38 @@ select typeaccount.id from typeaccount where typeaccount.typeaccount = usuario;
 $$
 language SQL
 
-//INSERTS
+//Función para mostrar id de usuario por sexo
+CREATE OR REPLACE Function mostraridporsexo(sexo varchar)returns integer
+AS
+$$
+select sex.id from sex where sex.sex = sexo;
+$$
+language SQL
+
+//Función para mostrar id por marca de auto
+CREATE OR REPLACE Function mostraridporsmarcaauto(marca varchar)returns integer
+AS
+$$
+select marcacar.id from marcacar where marcacar.marcacar = marca;
+$$
+language SQL
+
+//Función para mostrar id por tipodeauto
+CREATE OR REPLACE Function mostraridportipoauto(tipoauto varchar)returns integer
+AS
+$$
+select typecar.id from typecar where typecar.typcar = tipoauto;
+$$
+language SQL
+
+//Función para mostrar id por EstadoAuto
+CREATE OR REPLACE Function mostraridporestadoauto(estadoauto varchar)returns integer
+AS
+$$
+select statecar.id from statecar where statecar.statecar = estadoauto;
+$$
+language SQL
+//------------------------------------------------INSERTS--------------------------------------//
 
 //Función de insertar un nuevo usuario
 CREATE OR REPLACE Function insertarusuario (usuario varchar, pas varchar, fktipo integer)returns void
@@ -301,4 +339,19 @@ insert into ratecar (fktypecar,fkratehour,fkrateday) values (fktipocarro,fkpreci
 $$
 language SQL
 
+//Función de insertar tipo de Auto
+CREATE OR REPLACE Function insertartiupoauto (tipoauto varchar)returns void
+AS
+$$
+insert into typecar (typcar) values (tipoauto);
+$$
+language SQL
+
+//Función de insertar Auto
+CREATE OR REPLACE Function insertarauto (matricula varchar, colorauto varchar, fkmarca integer, fktipoauto integer, fkestadoauto integer)returns void
+AS
+$$
+insert into car (numbercar,color,fkmarcacar,fktypecar,fkstatecar) values (matricula,colorauto,fkmarca,fktipoauto,fkestadoauto);
+$$
+language SQL
 

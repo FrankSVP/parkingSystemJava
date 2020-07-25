@@ -5,12 +5,15 @@
  */
 package Clases;
 
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -117,4 +120,66 @@ public class CTipoAuto {
        
        
     }
+         
+         
+  public void AgregarTipoAuto( JTextField tipoauto)
+    {
+       Conexion.CConexion conexion = new Conexion.CConexion();
+ 
+        
+        
+     String consulta =("select insertartiupoauto(?);");
+    
+               try {
+              
+         CallableStatement cs = conexion.ConexionBD().prepareCall(consulta);
+         cs.setString(1, tipoauto.getText());
+     
+         
+      
+         cs.execute();
+     
+         
+         JOptionPane.showMessageDialog(null, "Insertó correctamente el tipo de Auto, VERIFIQUE");
+                                                  
+               } 
+               catch (SQLException ex) 
+               {
+                   JOptionPane.showMessageDialog(null, "No se guardó correctamente los datos" + ex.toString());
+                  
+               }
+    
+    }
+  
+       public void MostrarIdPorTipoAuto(JComboBox ComboTipoAuto, JTextField codigo)               
+        {
+            
+            Conexion.CConexion conexion = new Conexion.CConexion();
+         
+       //   double tarifdiadb = Double.parseDouble(combotarifadia.getSelectedItem().toString());
+          
+        String consulta =("select mostraridportipoauto(?)");
+       
+               try {
+              
+         CallableStatement cs =conexion.ConexionBD().prepareCall(consulta);
+         cs.setString(1,ComboTipoAuto.getSelectedItem().toString());
+         cs.execute();
+         ResultSet rs = cs.executeQuery();
+                 
+         
+                if(rs.next())
+                {
+                    
+                    codigo.setText(rs.getString("mostraridportipoauto"));
+                   
+                }
+              
+               } 
+               catch (SQLException ex) 
+               {
+                    JOptionPane.showMessageDialog(null,"Error:" + ex.toString());
+               }
+        
+        }
 }

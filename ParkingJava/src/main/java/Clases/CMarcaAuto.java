@@ -5,6 +5,7 @@
  */
 package Clases;
 
+import java.math.BigDecimal;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -101,7 +102,7 @@ public class CMarcaAuto {
             st = conexion.ConexionBD().createStatement(); 
             
             ResultSet rs =  st.executeQuery(sql);
-            cbmarca.addItem("Marca");
+          //  cbmarca.addItem("Marca");
            while(rs.next())
             {
                
@@ -150,4 +151,36 @@ public class CMarcaAuto {
                }
     
     }
+        
+       public void MostrarIdPorMarca(JComboBox comboMarcaAuto, JTextField codigo)               
+        {
+            
+            Conexion.CConexion conexion = new Conexion.CConexion();
+         
+       //   double tarifdiadb = Double.parseDouble(combotarifadia.getSelectedItem().toString());
+          
+        String consulta =("select mostraridporsmarcaauto(?)");
+       
+               try {
+              
+         CallableStatement cs =conexion.ConexionBD().prepareCall(consulta);
+         cs.setString(1,comboMarcaAuto.getSelectedItem().toString());
+         cs.execute();
+         ResultSet rs = cs.executeQuery();
+                 
+         
+                if(rs.next())
+                {
+                    
+                    codigo.setText(rs.getString("mostraridporsmarcaauto"));
+                   
+                }
+              
+               } 
+               catch (SQLException ex) 
+               {
+                    JOptionPane.showMessageDialog(null,"Error:" + ex.toString());
+               }
+        
+        }
 }
