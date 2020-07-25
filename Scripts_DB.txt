@@ -198,6 +198,13 @@ create view totalusuarios as
 select account.id, account.userid,account.pass, typeaccount.typeaccount from account
 INNER JOIN typeaccount ON account.fktypeaccount = typeaccount.id ;
 
+//Vista de Total de Tarfida de Autos
+create view totaltarifaauto as
+select ratecar.id ,typecar.typcar, ratehour.pricehour, rateday.priceday from ratecar
+INNER JOIN typecar ON ratecar.fktypecar = typecar.id
+INNER JOIN ratehour ON ratecar.fkratehour = ratehour.id
+INNER JOIN rateday ON ratecar.fkrateday= rateday.id
+
 //FUNCIONES//
 
 //Función para mostrar id de tipo de auto por nombre de auto
@@ -245,6 +252,53 @@ language SQL
 
 select insertarusuario('Frank','123',1);
 
+//Función de insertar tarifa dia
+CREATE OR REPLACE Function insertartarifadia (preciodia decimal)returns void
+AS
+$$
+insert into rateday (priceday) values (preciodia);
+$$
+language SQL
 
+//Función de insertar tarifa hora
+CREATE OR REPLACE Function insertartarifahora (preciohora decimal)returns void
+AS
+$$
+insert into ratehour (pricehour) values (preciohora);
+$$
+language SQL
+
+//Función de insertar tipo de pago
+CREATE OR REPLACE Function insertartipopago (tipopago varchar)returns void
+AS
+$$
+insert into typepay (typepay) values (tipopago);
+$$
+language SQL
+
+
+//Función de insertar marca de auto
+CREATE OR REPLACE Function insertartmarcaauto (marcaauto varchar)returns void
+AS
+$$
+insert into marcacar (marcacar) values (marcaauto);
+$$
+language SQL
+
+//Función de insertar estado de auto
+CREATE OR REPLACE Function insertarestadoauto (estadoauto varchar)returns void
+AS
+$$
+insert into statecar (statecar) values (estadoauto);
+$$
+language SQL
+
+//Función de insertar tarifa de Auto
+CREATE OR REPLACE Function insertartarifaporauto (fktipocarro integer, fkpreciohora integer, fkpreciodia integer)returns void
+AS
+$$
+insert into ratecar (fktypecar,fkratehour,fkrateday) values (fktipocarro,fkpreciohora,fkpreciodia);
+$$
+language SQL
 
 

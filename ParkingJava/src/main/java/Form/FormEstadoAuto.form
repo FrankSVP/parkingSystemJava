@@ -102,7 +102,7 @@
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jTextField1" min="-2" pref="184" max="-2" attributes="0"/>
+                  <Component id="txtestadoauto" min="-2" pref="184" max="-2" attributes="0"/>
                   <EmptySpace pref="22" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -113,7 +113,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtestadoauto" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -129,7 +129,7 @@
             <Property name="text" type="java.lang.String" value="Estado de auto"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="txtestadoauto">
         </Component>
       </SubComponents>
     </Container>
@@ -143,6 +143,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Registrar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>

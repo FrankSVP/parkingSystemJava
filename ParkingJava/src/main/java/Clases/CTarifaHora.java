@@ -5,6 +5,7 @@
  */
 package Clases;
 
+import java.math.BigDecimal;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -101,7 +102,7 @@ public class CTarifaHora {
             st = conexion.ConexionBD().createStatement(); 
             
             ResultSet rs =  st.executeQuery(sql);
-            cbpreciohora.addItem("Seleccione una tarifa");
+           // cbpreciohora.addItem("Seleccione una tarifa");
            while(rs.next())
             {
                
@@ -128,11 +129,11 @@ public class CTarifaHora {
             Conexion.CConexion conexion = new Conexion.CConexion();
          
         String consulta =("select mostraridporpreciohora(?)");
-       
+       double valorComboHora = Double.parseDouble(combotarifahora.getSelectedItem().toString());
                try {
               
          CallableStatement cs =conexion.ConexionBD().prepareCall(consulta);
-         cs.setInt(1,Integer.parseInt(combotarifahora.getSelectedItem().toString()));
+         cs.setBigDecimal(1,BigDecimal.valueOf(valorComboHora));
      
          cs.execute();
          ResultSet rs = cs.executeQuery();
@@ -152,6 +153,36 @@ public class CTarifaHora {
                }
         
         }
+        
+        
+     public void AgregarTarifaHora( JTextField tarifahora)
+    {
+       Conexion.CConexion conexion = new Conexion.CConexion();
+ 
+        double valorTarifaDia = Double.parseDouble(tarifahora.getText());
+        
+     String consulta =("select insertartarifahora(?);");
+    
+               try {
+              
+         CallableStatement cs = conexion.ConexionBD().prepareCall(consulta);
+         cs.setBigDecimal(1, BigDecimal.valueOf(valorTarifaDia));
+     
+         
+      
+         cs.execute();
+     
+         
+         JOptionPane.showMessageDialog(null, "Insertó correctamente la tarifa de hora, VERIFIQUE");
+                                                  
+               } 
+               catch (SQLException ex) 
+               {
+                   JOptionPane.showMessageDialog(null, "No se guardó correctamente los datos" + ex.toString());
+                  
+               }
+    
+    }
     
     
 }

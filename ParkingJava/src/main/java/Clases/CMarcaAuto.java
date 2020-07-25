@@ -5,12 +5,15 @@
  */
 package Clases;
 
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -116,5 +119,35 @@ public class CMarcaAuto {
        }
        
        
+    }
+           
+           
+        public void AgregarMarcaAuto( JTextField marcaauto)
+    {
+       Conexion.CConexion conexion = new Conexion.CConexion();
+ 
+       
+        
+     String consulta =("select insertartmarcaauto(?);");
+    
+               try {
+              
+         CallableStatement cs = conexion.ConexionBD().prepareCall(consulta);
+         cs.setString(1, marcaauto.getText());
+     
+         
+      
+         cs.execute();
+     
+         
+         JOptionPane.showMessageDialog(null, "Insertó correctamente la marca de auto, VERIFIQUE");
+                                                  
+               } 
+               catch (SQLException ex) 
+               {
+                   JOptionPane.showMessageDialog(null, "No se guardó correctamente los datos" + ex.toString());
+                  
+               }
+    
     }
 }

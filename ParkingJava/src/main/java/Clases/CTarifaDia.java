@@ -102,7 +102,7 @@ public class CTarifaDia {
             st = conexion.ConexionBD().createStatement(); 
             
             ResultSet rs =  st.executeQuery(sql);
-            cbpreciodia.addItem("Seleccione una tarifa");
+            //cbpreciodia.addItem("Seleccione una tarifa");
            while(rs.next())
             {
                
@@ -130,11 +130,11 @@ public class CTarifaDia {
        //   double tarifdiadb = Double.parseDouble(combotarifadia.getSelectedItem().toString());
           
         String consulta =("select mostraridporpreciodia(?)");
-       
+       double valorComboDia = Double.parseDouble(combotarifadia.getSelectedItem().toString());
                try {
               
          CallableStatement cs =conexion.ConexionBD().prepareCall(consulta);
-         cs.setString(1,"4.60");
+         cs.setBigDecimal(1,BigDecimal.valueOf(valorComboDia));
          cs.execute();
          ResultSet rs = cs.executeQuery();
                  
@@ -153,6 +153,36 @@ public class CTarifaDia {
                }
         
         }
+               
+               
+       public void AgregarTarifaDia( JTextField tarifadia)
+    {
+       Conexion.CConexion conexion = new Conexion.CConexion();
+ 
+        double valorTarifaDia = Double.parseDouble(tarifadia.getText());
+        
+     String consulta =("select insertartarifadia(?);");
+    
+               try {
+              
+         CallableStatement cs = conexion.ConexionBD().prepareCall(consulta);
+         cs.setBigDecimal(1, BigDecimal.valueOf(valorTarifaDia));
+     
+         
+      
+         cs.execute();
+     
+         
+         JOptionPane.showMessageDialog(null, "Insertó correctamente la tarifa de día, VERIFIQUE");
+                                                  
+               } 
+               catch (SQLException ex) 
+               {
+                   JOptionPane.showMessageDialog(null, "No se guardó correctamente los datos" + ex.toString());
+                  
+               }
+    
+    }
 }
 
 

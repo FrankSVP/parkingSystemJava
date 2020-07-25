@@ -37,9 +37,10 @@ public class FormTarifaPorAuto extends javax.swing.JFrame {
         Clases.CTarifaPorAuto tarifaporauto = new Clases.CTarifaPorAuto();
         tarifaporauto.MostrarIdPorTipoAuto(cbtipoauto, txtIdTipoAuto);
         
-        
         tarifadia.MostrarIdPorTarifaDia(cbpreciodia, txtIdPrecioDia);
-       // tarifahora.MostrarIdPorTarifaHora(cbpreciohora, txtIdPrecioHora);
+        tarifahora.MostrarIdPorTarifaHora(cbpreciohora, txtIdPrecioHora);
+        
+        tarifaporauto.MostrarTotalDeTarifaPorAuto(tbtotaltarifaauto);
     }
 
     /**
@@ -56,7 +57,7 @@ public class FormTarifaPorAuto extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbusuarios = new javax.swing.JTable();
+        tbtotaltarifaauto = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -74,6 +75,11 @@ public class FormTarifaPorAuto extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(31, 171, 137));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Registrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(31, 171, 137));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
@@ -87,7 +93,7 @@ public class FormTarifaPorAuto extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(45, 45, 45));
         jLabel2.setText("Tarifas por Auto");
 
-        tbusuarios.setModel(new javax.swing.table.DefaultTableModel(
+        tbtotaltarifaauto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -98,7 +104,7 @@ public class FormTarifaPorAuto extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(tbusuarios);
+        jScrollPane1.setViewportView(tbtotaltarifaauto);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(45, 45, 45)));
@@ -112,6 +118,23 @@ public class FormTarifaPorAuto extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(45, 45, 45));
         jLabel4.setText("Precio Día");
 
+        cbpreciodia.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbpreciodiaItemStateChanged(evt);
+            }
+        });
+
+        cbpreciohora.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbpreciohoraItemStateChanged(evt);
+            }
+        });
+
+        cbtipoauto.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbtipoautoItemStateChanged(evt);
+            }
+        });
         cbtipoauto.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 cbtipoautoPropertyChange(evt);
@@ -164,6 +187,9 @@ public class FormTarifaPorAuto extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel2))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createSequentialGroup()
@@ -171,48 +197,48 @@ public class FormTarifaPorAuto extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel2))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtIdTipoAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIdPrecioHora, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIdPrecioDia, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtIdTipoAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtIdPrecioHora, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtIdPrecioDia, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(txtIdTipoAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtIdPrecioHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtIdPrecioDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton2)
-                            .addComponent(jButton3))))
-                .addGap(17, 17, Short.MAX_VALUE))
+                            .addComponent(jButton3)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(txtIdTipoAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtIdPrecioHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtIdPrecioDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -221,6 +247,27 @@ public class FormTarifaPorAuto extends javax.swing.JFrame {
     private void cbtipoautoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cbtipoautoPropertyChange
        
     }//GEN-LAST:event_cbtipoautoPropertyChange
+
+    private void cbpreciodiaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbpreciodiaItemStateChanged
+         Clases.CTarifaDia tarifadia = new Clases.CTarifaDia(); 
+        tarifadia.MostrarIdPorTarifaDia(cbpreciodia, txtIdPrecioDia);
+    }//GEN-LAST:event_cbpreciodiaItemStateChanged
+
+    private void cbpreciohoraItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbpreciohoraItemStateChanged
+        Clases.CTarifaHora tarifahora = new Clases.CTarifaHora();
+        tarifahora.MostrarIdPorTarifaHora(cbpreciohora, txtIdPrecioHora);
+    }//GEN-LAST:event_cbpreciohoraItemStateChanged
+
+    private void cbtipoautoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbtipoautoItemStateChanged
+       Clases.CTarifaPorAuto tarifaporauto = new Clases.CTarifaPorAuto();
+        tarifaporauto.MostrarIdPorTipoAuto(cbtipoauto, txtIdTipoAuto);
+    }//GEN-LAST:event_cbtipoautoItemStateChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      Clases.CTarifaPorAuto tarifaporauto = new Clases.CTarifaPorAuto();
+      tarifaporauto.AgregarTarifaAuto(txtIdTipoAuto, txtIdPrecioHora, txtIdPrecioDia);
+      tarifaporauto.MostrarTotalDeTarifaPorAuto(tbtotaltarifaauto);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -272,7 +319,7 @@ public class FormTarifaPorAuto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbusuarios;
+    private javax.swing.JTable tbtotaltarifaauto;
     private javax.swing.JTextField txtIdPrecioDia;
     private javax.swing.JTextField txtIdPrecioHora;
     private javax.swing.JTextField txtIdTipoAuto;

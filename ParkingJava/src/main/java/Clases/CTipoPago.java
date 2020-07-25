@@ -5,10 +5,14 @@
  */
 package Clases;
 
+import java.math.BigDecimal;
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -76,5 +80,34 @@ public class CTipoPago {
        }
        
        
+    }
+       
+          public void AgregarTipoPago( JTextField tipopago)
+    {
+       Conexion.CConexion conexion = new Conexion.CConexion();
+ 
+        
+        
+     String consulta =("select insertartipopago(?);");
+    
+               try {
+              
+         CallableStatement cs = conexion.ConexionBD().prepareCall(consulta);
+         cs.setString(1, tipopago.getText());
+     
+         
+      
+         cs.execute();
+     
+         
+         JOptionPane.showMessageDialog(null, "Insertó correctamente el tipo de Pago, VERIFIQUE");
+                                                  
+               } 
+               catch (SQLException ex) 
+               {
+                   JOptionPane.showMessageDialog(null, "No se guardó correctamente los datos" + ex.toString());
+                  
+               }
+    
     }
 }
