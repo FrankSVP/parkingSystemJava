@@ -110,4 +110,52 @@ public class CTipoPago {
                }
     
     }
+          
+          
+        public void seleccionarTipoPago(JTable totalTipoPago, JTextField codigoTipoPago, JTextField tipoPgo)
+    {
+    
+        int fila = totalTipoPago.getSelectedRow();
+        
+        if (fila >=0) {
+            
+            codigoTipoPago.setText(totalTipoPago.getValueAt(fila, 0).toString());
+            tipoPgo.setText(totalTipoPago.getValueAt(fila, 1).toString());
+  
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Fila no Seleccionada");
+        }
+        
+    }
+        
+        
+       public void modificarTipoPago( JTextField codigoTipoPago, JTextField tipopago)
+    {
+       Conexion.CConexion conexion = new Conexion.CConexion();
+    
+   
+       
+     String consulta =("select modificartipopago(?,?);");
+    
+               try {
+              
+         CallableStatement cs = conexion.ConexionBD().prepareCall(consulta);
+         cs.setInt(1, Integer.parseInt(codigoTipoPago.getText()));
+         cs.setString(2, tipopago.getText());
+ 
+         cs.execute();
+     
+         
+         JOptionPane.showMessageDialog(null, "Se modificó correctamente el tipo de pago, VERIFIQUE");
+                                                  
+               } 
+               catch (SQLException ex) 
+               {
+                   JOptionPane.showMessageDialog(null, "No se modificó correctamente los datos" + ex.toString());
+                  
+               }
+    
+    }
 }

@@ -42,6 +42,7 @@ public class FormTipoDePago extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txttipopago = new javax.swing.JTextField();
+        txtCodTipoPago = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -57,6 +58,11 @@ public class FormTipoDePago extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(31, 171, 137));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Modificar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(31, 171, 137));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
@@ -73,6 +79,11 @@ public class FormTipoDePago extends javax.swing.JFrame {
 
             }
         ));
+        tbtipopago.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbtipopagoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbtipopago);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -92,8 +103,10 @@ public class FormTipoDePago extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txttipopago, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
+                .addComponent(txtCodTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txttipopago, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -102,7 +115,8 @@ public class FormTipoDePago extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txttipopago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txttipopago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -155,6 +169,19 @@ public class FormTipoDePago extends javax.swing.JFrame {
           txttipopago.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void tbtipopagoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbtipopagoMouseClicked
+     Clases.CTipoPago tipoPago = new Clases.CTipoPago();
+     tipoPago.seleccionarTipoPago(tbtipopago, txtCodTipoPago, txttipopago);
+    }//GEN-LAST:event_tbtipopagoMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+     Clases.CTipoPago tipoPago = new Clases.CTipoPago();
+     tipoPago.modificarTipoPago(txtCodTipoPago, txttipopago);
+     tipoPago.MostrarTipoPago(tbtipopago);
+     txtCodTipoPago.setText("");
+     txttipopago.setText("");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -199,6 +226,7 @@ public class FormTipoDePago extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbtipopago;
+    private javax.swing.JTextField txtCodTipoPago;
     private javax.swing.JTextField txttipopago;
     // End of variables declaration//GEN-END:variables
 }

@@ -36,7 +36,8 @@ public class FormMarcaAuto extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtmarcaauto = new javax.swing.JTextField();
+        txtmarcaAuto = new javax.swing.JTextField();
+        txtCodMarcaAuto = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -63,7 +64,9 @@ public class FormMarcaAuto extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtmarcaauto, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCodMarcaAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(txtmarcaAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -72,7 +75,8 @@ public class FormMarcaAuto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtmarcaauto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtmarcaAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodMarcaAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -88,6 +92,11 @@ public class FormMarcaAuto extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(31, 171, 137));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Modificar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(31, 171, 137));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
@@ -104,6 +113,11 @@ public class FormMarcaAuto extends javax.swing.JFrame {
 
             }
         ));
+        tbmarcaauto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbmarcaautoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbmarcaauto);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -150,10 +164,23 @@ public class FormMarcaAuto extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       Clases.CMarcaAuto marcaauto = new Clases.CMarcaAuto();
-      marcaauto.AgregarMarcaAuto(txtmarcaauto);
+      marcaauto.AgregarMarcaAuto(txtmarcaAuto);
       marcaauto.MostrarMarcaAuto(tbmarcaauto);
-      txtmarcaauto.setText("");
+      txtmarcaAuto.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tbmarcaautoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbmarcaautoMouseClicked
+     Clases.CMarcaAuto marcaAuto = new Clases.CMarcaAuto();
+     marcaAuto.seleccionarMarcaAuto(tbmarcaauto, txtCodMarcaAuto, txtmarcaAuto);
+    }//GEN-LAST:event_tbmarcaautoMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    Clases.CMarcaAuto marcaAuto = new Clases.CMarcaAuto();
+    marcaAuto.modificarMarcaAuto(txtCodMarcaAuto, txtmarcaAuto);
+    marcaAuto.MostrarMarcaAuto(tbmarcaauto);
+    txtCodMarcaAuto.setText("");
+    txtmarcaAuto.setText("");
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -199,6 +226,7 @@ public class FormMarcaAuto extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbmarcaauto;
-    private javax.swing.JTextField txtmarcaauto;
+    private javax.swing.JTextField txtCodMarcaAuto;
+    private javax.swing.JTextField txtmarcaAuto;
     // End of variables declaration//GEN-END:variables
 }

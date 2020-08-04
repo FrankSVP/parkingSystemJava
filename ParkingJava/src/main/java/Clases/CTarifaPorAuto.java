@@ -5,6 +5,7 @@
  */
 package Clases;
 
+import java.math.BigDecimal;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -143,6 +144,59 @@ public class CTarifaPorAuto {
                catch (SQLException ex) 
                {
                    JOptionPane.showMessageDialog(null, "No se guardó correctamente los datos" + ex.toString());
+                  
+               }
+    
+    }
+    
+       public void seleccionarTarifaPorAuto(JTable totalTarifaPorAuto, JTextField codigoTarifaPorAuto, JComboBox tipoAuto , JComboBox PrecioHora, JComboBox PrecioDia)
+    {
+    
+        int fila = totalTarifaPorAuto.getSelectedRow();
+        
+        if (fila >=0) {
+            
+            codigoTarifaPorAuto.setText(totalTarifaPorAuto.getValueAt(fila, 0).toString());
+            tipoAuto.setSelectedItem(totalTarifaPorAuto.getValueAt(fila, 1).toString());
+            PrecioHora.setSelectedItem(totalTarifaPorAuto.getValueAt(fila, 2).toString());
+            PrecioDia.setSelectedItem(totalTarifaPorAuto.getValueAt(fila, 3).toString());
+  
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Fila no Seleccionada");
+        }
+        
+    }
+       
+      public void modificarTarifaPorAuto( JTextField codTarifaPorAuto, JTextField codTipoAuto, JTextField codPrecioHora, JTextField codPrecioDia)
+    {
+       Conexion.CConexion conexion = new Conexion.CConexion();
+    
+   
+       
+     String consulta =("select modificartarifaporauto(?,?,?,?);");
+    
+               try {
+              
+         CallableStatement cs = conexion.ConexionBD().prepareCall(consulta);
+         cs.setInt(1, Integer.parseInt(codTarifaPorAuto.getText()));
+         cs.setInt(2, Integer.parseInt(codTipoAuto.getText()));
+         cs.setInt(3, Integer.parseInt(codPrecioHora.getText()));
+         cs.setInt(4, Integer.parseInt(codPrecioDia.getText()));
+       
+     
+         
+      
+         cs.execute();
+     
+         
+         JOptionPane.showMessageDialog(null, "Se modificó correctamente la tarifa por Auto, VERIFIQUE");
+                                                  
+               } 
+               catch (SQLException ex) 
+               {
+                   JOptionPane.showMessageDialog(null, "No se modificó correctamente los datos" + ex.toString());
                   
                }
     

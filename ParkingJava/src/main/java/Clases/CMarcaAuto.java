@@ -183,4 +183,51 @@ public class CMarcaAuto {
                }
         
         }
+       
+       public void seleccionarMarcaAuto(JTable totalMarcaAuto, JTextField codigoMarcaAuto, JTextField marcaAuto)
+    {
+    
+        int fila = totalMarcaAuto.getSelectedRow();
+        
+        if (fila >=0) {
+            
+            codigoMarcaAuto.setText(totalMarcaAuto.getValueAt(fila, 0).toString());
+            marcaAuto.setText(totalMarcaAuto.getValueAt(fila, 1).toString());
+  
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Fila no Seleccionada");
+        }
+        
+    }
+       
+       
+       public void modificarMarcaAuto( JTextField codigoMarcaAuto, JTextField marcaAuto)
+    {
+       Conexion.CConexion conexion = new Conexion.CConexion();
+    
+   
+       
+     String consulta =("select modificarmarcaauto(?,?);");
+    
+               try {
+              
+         CallableStatement cs = conexion.ConexionBD().prepareCall(consulta);
+         cs.setInt(1, Integer.parseInt(codigoMarcaAuto.getText()));
+         cs.setString(2, marcaAuto.getText());
+ 
+         cs.execute();
+     
+         
+         JOptionPane.showMessageDialog(null, "Se modificó correctamente la marca de auto, VERIFIQUE");
+                                                  
+               } 
+               catch (SQLException ex) 
+               {
+                   JOptionPane.showMessageDialog(null, "No se modificó correctamente los datos" + ex.toString());
+                  
+               }
+    
+    }
 }

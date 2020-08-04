@@ -183,6 +183,54 @@ public class CTarifaDia {
                }
     
     }
+       
+       public void seleccionarTarifaDia(JTable totalTarifaDia, JTextField codigoTarifaDia, JTextField tarifaDia)
+    {
+    
+        int fila = totalTarifaDia.getSelectedRow();
+        
+        if (fila >=0) {
+            
+            codigoTarifaDia.setText(totalTarifaDia.getValueAt(fila, 0).toString());
+            tarifaDia.setText(totalTarifaDia.getValueAt(fila, 1).toString());
+  
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Fila no Seleccionada");
+        }
+        
+    }
+       
+      public void modificarTarifaDia( JTextField codigoTarifaDia, JTextField tarifaDia)
+    {
+       Conexion.CConexion conexion = new Conexion.CConexion();
+    
+       double dtarifadia = Double.parseDouble(tarifaDia.getText());
+       
+     String consulta =("select modificartarifadia(?,?);");
+    
+               try {
+              
+         CallableStatement cs = conexion.ConexionBD().prepareCall(consulta);
+         cs.setInt(1, Integer.parseInt(codigoTarifaDia.getText()));
+         cs.setBigDecimal(2, BigDecimal.valueOf(dtarifadia));
+     
+         
+      
+         cs.execute();
+     
+         
+         JOptionPane.showMessageDialog(null, "Se modificó correctamente la tarifa de día, VERIFIQUE");
+                                                  
+               } 
+               catch (SQLException ex) 
+               {
+                   JOptionPane.showMessageDialog(null, "No se modificó correctamente los datos" + ex.toString());
+                  
+               }
+    
+    }
 }
 
 

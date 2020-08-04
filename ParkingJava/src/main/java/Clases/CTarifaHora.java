@@ -183,6 +183,54 @@ public class CTarifaHora {
                }
     
     }
+     
+     public void seleccionarTarifaHora(JTable totalTarifaHora, JTextField codigoTarifaHora, JTextField tarifaHora)
+    {
+    
+        int fila = totalTarifaHora.getSelectedRow();
+        
+        if (fila >=0) {
+            
+            codigoTarifaHora.setText(totalTarifaHora.getValueAt(fila, 0).toString());
+            tarifaHora.setText(totalTarifaHora.getValueAt(fila, 1).toString());
+  
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Fila no Seleccionada");
+        }
+        
+    }
+     
+         public void modificarTarifaHora( JTextField codigoTarifaHora, JTextField tarifaHora)
+    {
+       Conexion.CConexion conexion = new Conexion.CConexion();
+    
+       double dtarifadia = Double.parseDouble(tarifaHora.getText());
+       
+     String consulta =("select modificartarifahora(?,?);");
+    
+               try {
+              
+         CallableStatement cs = conexion.ConexionBD().prepareCall(consulta);
+         cs.setInt(1, Integer.parseInt(codigoTarifaHora.getText()));
+         cs.setBigDecimal(2, BigDecimal.valueOf(dtarifadia));
+     
+         
+      
+         cs.execute();
+     
+         
+         JOptionPane.showMessageDialog(null, "Se modificó correctamente la tarifa de hora, VERIFIQUE");
+                                                  
+               } 
+               catch (SQLException ex) 
+               {
+                   JOptionPane.showMessageDialog(null, "No se modificó correctamente los datos" + ex.toString());
+                  
+               }
+    
+    }
     
     
 }

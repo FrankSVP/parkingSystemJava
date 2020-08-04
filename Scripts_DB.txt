@@ -355,3 +355,55 @@ insert into car (numbercar,color,fkmarcacar,fktypecar,fkstatecar) values (matric
 $$
 language SQL
 
+//Función para modificar la tarifadia
+
+CREATE OR REPLACE Function modificartarifadia (codigo int, nuevopreciodia decimal(4,2))returns void
+AS
+$$
+UPDATE rateday set priceday =nuevopreciodia WHERE rateday.id= codigo;
+$$
+language SQL
+
+//Función para modificar la tarifahora
+CREATE OR REPLACE Function modificartarifahora (codigo int, nuevopreciohora decimal(4,2))returns void
+AS
+$$
+UPDATE ratehour set pricehour =nuevopreciohora WHERE ratehour.id= codigo;
+$$
+language SQL
+
+//Función para modificar tipopago
+CREATE OR REPLACE Function modificartipopago (codigo int, nuevotipopago varchar)returns void
+AS
+$$
+UPDATE typepay set typepay =nuevotipopago WHERE typepay.id= codigo;
+$$
+language SQL
+
+
+//Función para modificar marcadeauto
+CREATE OR REPLACE Function modificarmarcaauto (codigo int, nuevamarca varchar)returns void
+AS
+$$
+UPDATE marcacar set marcacar =nuevamarca WHERE marcacar.id= codigo;
+$$
+language SQL
+
+
+//Función para modificar estadoauto
+CREATE OR REPLACE Function modificarestadoauto (codigo int, nuevoestadoauto varchar)returns void
+AS
+$$
+UPDATE statecar set statecar =nuevoestadoauto WHERE statecar.id= codigo;
+$$
+language SQL
+
+//Función para modificar tarifaporauto
+
+CREATE OR REPLACE Function modificartarifaporauto (codigo int, codigotipoauto int, codigopreciohora int, codigopreciodia int)returns void
+AS
+$$
+UPDATE ratecar set fktypecar =codigotipoauto, fkratehour = codigopreciohora, fkrateday=codigopreciodia  WHERE ratecar.id= codigo;
+$$
+language SQL
+

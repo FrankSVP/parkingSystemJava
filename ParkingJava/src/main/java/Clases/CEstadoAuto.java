@@ -180,4 +180,50 @@ public class CEstadoAuto {
                }
         
         }
+        
+       public void seleccionarEstadoAuto(JTable totalEstadoAuto, JTextField codigoEstadoAuto, JTextField estadoAuto)
+    {
+    
+        int fila = totalEstadoAuto.getSelectedRow();
+        
+        if (fila >=0) {
+            
+            codigoEstadoAuto.setText(totalEstadoAuto.getValueAt(fila, 0).toString());
+            estadoAuto.setText(totalEstadoAuto.getValueAt(fila, 1).toString());
+  
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Fila no Seleccionada");
+        }
+        
+    }
+       
+      public void modificarEstadoAuto( JTextField codigoMarcaAuto, JTextField marcaAuto)
+    {
+       Conexion.CConexion conexion = new Conexion.CConexion();
+    
+   
+       
+     String consulta =("select modificarestadoauto(?,?);");
+    
+               try {
+              
+         CallableStatement cs = conexion.ConexionBD().prepareCall(consulta);
+         cs.setInt(1, Integer.parseInt(codigoMarcaAuto.getText()));
+         cs.setString(2, marcaAuto.getText());
+ 
+         cs.execute();
+     
+         
+         JOptionPane.showMessageDialog(null, "Se modificó correctamente el estado de auto, VERIFIQUE");
+                                                  
+               } 
+               catch (SQLException ex) 
+               {
+                   JOptionPane.showMessageDialog(null, "No se modificó correctamente los datos" + ex.toString());
+                  
+               }
+    
+    }
 }

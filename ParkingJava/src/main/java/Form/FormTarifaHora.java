@@ -37,6 +37,7 @@ public class FormTarifaHora extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txttarifahora = new javax.swing.JTextField();
+        txtCodTarifaHora = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -62,8 +63,10 @@ public class FormTarifaHora extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txttarifahora, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addComponent(txtCodTarifaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txttarifahora, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -72,7 +75,8 @@ public class FormTarifaHora extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txttarifahora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txttarifahora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodTarifaHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -88,6 +92,11 @@ public class FormTarifaHora extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(31, 171, 137));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Modificar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(31, 171, 137));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
@@ -104,6 +113,11 @@ public class FormTarifaHora extends javax.swing.JFrame {
 
             }
         ));
+        tbtarfiaHora.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbtarfiaHoraMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbtarfiaHora);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -155,6 +169,19 @@ public class FormTarifaHora extends javax.swing.JFrame {
      txttarifahora.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void tbtarfiaHoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbtarfiaHoraMouseClicked
+       Clases.CTarifaHora tarifaHora = new Clases.CTarifaHora();
+       tarifaHora.seleccionarTarifaHora(tbtarfiaHora, txtCodTarifaHora, txttarifahora);
+    }//GEN-LAST:event_tbtarfiaHoraMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Clases.CTarifaHora tarifaHora = new Clases.CTarifaHora();
+        tarifaHora.modificarTarifaHora(txtCodTarifaHora, txttarifahora);
+        tarifaHora.MostrarTarifaHora(tbtarfiaHora);
+        txtCodTarifaHora.setText("");
+        txttarifahora.setText("");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -199,6 +226,7 @@ public class FormTarifaHora extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbtarfiaHora;
+    private javax.swing.JTextField txtCodTarifaHora;
     private javax.swing.JTextField txttarifahora;
     // End of variables declaration//GEN-END:variables
 }

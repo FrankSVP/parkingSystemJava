@@ -69,6 +69,7 @@ public class FormTarifaPorAuto extends javax.swing.JFrame {
         txtIdPrecioHora = new javax.swing.JTextField();
         txtIdPrecioDia = new javax.swing.JTextField();
         txtIdTipoAuto = new javax.swing.JTextField();
+        txtIdTarifaPorAuto = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -84,6 +85,11 @@ public class FormTarifaPorAuto extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(31, 171, 137));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Modificar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(31, 171, 137));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
@@ -104,6 +110,11 @@ public class FormTarifaPorAuto extends javax.swing.JFrame {
 
             }
         ));
+        tbtotaltarifaauto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbtotaltarifaautoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbtotaltarifaauto);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -189,7 +200,9 @@ public class FormTarifaPorAuto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addComponent(jLabel2))
+                        .addComponent(jLabel2)
+                        .addGap(69, 69, 69)
+                        .addComponent(txtIdTarifaPorAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createSequentialGroup()
@@ -214,31 +227,32 @@ public class FormTarifaPorAuto extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(jLabel2)
+                        .addGap(47, 47, 47)
+                        .addComponent(txtIdTipoAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtIdPrecioHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3)))
+                        .addComponent(txtIdPrecioDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
+                        .addGap(11, 11, 11)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(16, 16, 16)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(txtIdTipoAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(txtIdTarifaPorAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtIdPrecioHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtIdPrecioDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(17, Short.MAX_VALUE))
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButton2)
+                                    .addComponent(jButton3))))))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -268,6 +282,18 @@ public class FormTarifaPorAuto extends javax.swing.JFrame {
       tarifaporauto.AgregarTarifaAuto(txtIdTipoAuto, txtIdPrecioHora, txtIdPrecioDia);
       tarifaporauto.MostrarTotalDeTarifaPorAuto(tbtotaltarifaauto);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tbtotaltarifaautoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbtotaltarifaautoMouseClicked
+     Clases.CTarifaPorAuto tarifaPorAuto = new Clases.CTarifaPorAuto();
+     tarifaPorAuto.seleccionarTarifaPorAuto(tbtotaltarifaauto, txtIdTarifaPorAuto, cbtipoauto, cbpreciohora, cbpreciodia);
+    }//GEN-LAST:event_tbtotaltarifaautoMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       Clases.CTarifaPorAuto tarifaPorAuto = new Clases.CTarifaPorAuto();
+       tarifaPorAuto.modificarTarifaPorAuto(txtIdTarifaPorAuto, txtIdTipoAuto, txtIdPrecioHora, txtIdPrecioDia);
+       tarifaPorAuto.MostrarTotalDeTarifaPorAuto(tbtotaltarifaauto);
+       
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -322,6 +348,7 @@ public class FormTarifaPorAuto extends javax.swing.JFrame {
     private javax.swing.JTable tbtotaltarifaauto;
     private javax.swing.JTextField txtIdPrecioDia;
     private javax.swing.JTextField txtIdPrecioHora;
+    private javax.swing.JTextField txtIdTarifaPorAuto;
     private javax.swing.JTextField txtIdTipoAuto;
     // End of variables declaration//GEN-END:variables
 }
