@@ -30,9 +30,12 @@ id SERIAL primary key,
 fktypecar int,
 fkratehour int,
 fkrateday int,
-FOREIGN KEY (fkratehour) REFERENCES ratehour (id),
-FOREIGN KEY (fkrateday) REFERENCES rateday (id)
+FOREIGN KEY (fkratehour) REFERENCES rateour (id) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (fkrateday) REFERENCES rateday (id) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (fktypecar) REFERENCES typecar (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+
 
 create table marcacar (
 id SERIAL primary key,
@@ -51,9 +54,9 @@ color varchar (30),
 fkmarcacar integer,
 fktypecar  integer,
 fkstatecar  integer,
-FOREIGN KEY (fkmarcacar) REFERENCES marcacar (id),
-FOREIGN KEY (fktypecar) REFERENCES typecar (id),
-FOREIGN KEY (fkstatecar) REFERENCES statecar (id)
+FOREIGN KEY (fkmarcacar) REFERENCES marcacar (id) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (fktypecar) REFERENCES typecar (id)ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (fkstatecar) REFERENCES statecar (id)ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table sex (
@@ -70,9 +73,10 @@ phone integer,
 address varchar(200),
 fksexo integer,
 fkcar integer,
-FOREIGN KEY (fksexo) REFERENCES sex (id),
-FOREIGN KEY (fkcar) REFERENCES Car (id)
+FOREIGN KEY (fksexo) REFERENCES sex (id) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (fkcar) REFERENCES Car (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
 create table typeaccount (
 id SERIAL primary key,
 typeaccount varchar (20) 
@@ -82,17 +86,16 @@ id SERIAL primary key,
 userid varchar (10),
 pass varchar(10),
 fktypeaccount integer,
-FOREIGN KEY (fktypeaccount) REFERENCES typeaccount (id)
+FOREIGN KEY (fktypeaccount) REFERENCES typeaccount (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
-create table typeaccount (
-id SERIAL primary key,
-typeaccount varchar (20) 
-);
+
+
 create table states (
 id SERIAL primary key,
 states varchar (30),
 spaces integer
 );
+
 create table parking (
 id SERIAL primary key,
 datetimestart timestamp,
@@ -100,9 +103,9 @@ datetimeend timestamp,
 fkclient integer,
 fkaccount integer,
 fkstates integer,
-FOREIGN KEY (fkclient) REFERENCES client (id),
-FOREIGN KEY (fkaccount) REFERENCES account (id),
-FOREIGN KEY (fkstates) REFERENCES states (id)
+FOREIGN KEY (fkclient) REFERENCES client (id) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (fkaccount) REFERENCES account (id)ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (fkstates) REFERENCES states (id)ON DELETE CASCADE ON UPDATE CASCADE
 );
 create table typepay (
 id SERIAL primary key,
@@ -114,8 +117,8 @@ mount decimal (4,2),
 datetimepay timestamp,
 fkparking integer,
 fktypepay integer,
-FOREIGN KEY (fkparking) REFERENCES parking (id),
-FOREIGN KEY (fktypepay) REFERENCES typepay (id)
+FOREIGN KEY (fkparking) REFERENCES parking (id)ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (fktypepay) REFERENCES typepay (id)ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 //--------------------------------------------------------VIEWS ----------------------------------------//
