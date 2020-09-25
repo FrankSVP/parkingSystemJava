@@ -201,4 +201,32 @@ public class CTarifaPorAuto {
                }
     
     }
+      
+        public void eliminarTarifaPorAuto( JTextField codigoTarifaPorAuto)
+    {
+       Conexion.CConexion conexion = new Conexion.CConexion();
+    
+       
+       
+     String consulta =("select eliminartarifaporauto(?);");
+    
+               try {
+              
+         CallableStatement cs = conexion.ConexionBD().prepareCall(consulta);
+         cs.setInt(1, Integer.parseInt(codigoTarifaPorAuto.getText()));
+
+ 
+         cs.execute();
+     
+         
+         JOptionPane.showMessageDialog(null, "Se eliminó correctamente la tarifa por auto, VERIFIQUE");
+                                                  
+               } 
+               catch (SQLException ex) 
+               {
+                   JOptionPane.showMessageDialog(null, "No se eliminó correctamente la la tarifa por auto" + ex.toString());
+                  
+               }
+    
+    }
 }

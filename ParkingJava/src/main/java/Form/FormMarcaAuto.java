@@ -101,6 +101,11 @@ public class FormMarcaAuto extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(31, 171, 137));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Eliminar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         tbmarcaauto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -181,6 +186,14 @@ public class FormMarcaAuto extends javax.swing.JFrame {
     txtCodMarcaAuto.setText("");
     txtmarcaAuto.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    Clases.CMarcaAuto marcaAuto = new Clases.CMarcaAuto();
+    marcaAuto.eliminarMarcaAuto(txtCodMarcaAuto);
+    marcaAuto.MostrarMarcaAuto(tbmarcaauto);
+    txtCodMarcaAuto.setText("");
+    txtmarcaAuto.setText("");
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

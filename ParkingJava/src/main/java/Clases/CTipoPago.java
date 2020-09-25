@@ -158,4 +158,32 @@ public class CTipoPago {
                }
     
     }
+       
+                public void eliminarTipoPago( JTextField codigoTipoPago)
+    {
+       Conexion.CConexion conexion = new Conexion.CConexion();
+    
+       
+       
+     String consulta =("select eliminartipopago(?);");
+    
+               try {
+              
+         CallableStatement cs = conexion.ConexionBD().prepareCall(consulta);
+         cs.setInt(1, Integer.parseInt(codigoTipoPago.getText()));
+
+ 
+         cs.execute();
+     
+         
+         JOptionPane.showMessageDialog(null, "Se eliminó correctamente el tipo de pago, VERIFIQUE");
+                                                  
+               } 
+               catch (SQLException ex) 
+               {
+                   JOptionPane.showMessageDialog(null, "No se eliminó correctamente el tipo de pago" + ex.toString());
+                  
+               }
+    
+    }
 }

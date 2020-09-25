@@ -230,4 +230,31 @@ public class CMarcaAuto {
                }
     
     }
+         public void eliminarMarcaAuto( JTextField codigoMarcaAuto)
+    {
+       Conexion.CConexion conexion = new Conexion.CConexion();
+    
+       
+       
+     String consulta =("select eliminarmarcaauto(?);");
+    
+               try {
+              
+         CallableStatement cs = conexion.ConexionBD().prepareCall(consulta);
+         cs.setInt(1, Integer.parseInt(codigoMarcaAuto.getText()));
+
+ 
+         cs.execute();
+     
+         
+         JOptionPane.showMessageDialog(null, "Se eliminó correctamente la marca de auto, VERIFIQUE");
+                                                  
+               } 
+               catch (SQLException ex) 
+               {
+                   JOptionPane.showMessageDialog(null, "No se eliminó correctamente la marca de auto" + ex.toString());
+                  
+               }
+    
+    }
 }

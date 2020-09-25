@@ -231,6 +231,34 @@ public class CTarifaHora {
                }
     
     }
+         
+                 public void eliminarTarifaHora( JTextField codigoTarifaHora)
+    {
+       Conexion.CConexion conexion = new Conexion.CConexion();
+    
+       
+       
+     String consulta =("select eliminartarifahora(?);");
+    
+               try {
+              
+         CallableStatement cs = conexion.ConexionBD().prepareCall(consulta);
+         cs.setInt(1, Integer.parseInt(codigoTarifaHora.getText()));
+
+ 
+         cs.execute();
+     
+         
+         JOptionPane.showMessageDialog(null, "Se eliminó correctamente la tarifa de hora, VERIFIQUE");
+                                                  
+               } 
+               catch (SQLException ex) 
+               {
+                   JOptionPane.showMessageDialog(null, "No se eliminó correctamente la tarifa de hora" + ex.toString());
+                  
+               }
+    
+    }
     
     
 }

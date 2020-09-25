@@ -94,7 +94,7 @@ public class CTarifaDia {
 
      cbpreciodia.setModel(modelo);
 
-     sql = "select * from combopreciodia;";
+     sql = "select * from combopreciodia";
  
     Statement st;
     
@@ -231,6 +231,35 @@ public class CTarifaDia {
                }
     
     }
+      
+           public void eliminarTarifaDia( JTextField codigoTarifaDia)
+    {
+       Conexion.CConexion conexion = new Conexion.CConexion();
+    
+       
+       
+     String consulta =("select eliminartarifadia(?);");
+    
+               try {
+              
+         CallableStatement cs = conexion.ConexionBD().prepareCall(consulta);
+         cs.setInt(1, Integer.parseInt(codigoTarifaDia.getText()));
+
+ 
+         cs.execute();
+     
+         
+         JOptionPane.showMessageDialog(null, "Se eliminó correctamente la tarifa de día, VERIFIQUE");
+                                                  
+               } 
+               catch (SQLException ex) 
+               {
+                   JOptionPane.showMessageDialog(null, "No se eliminó correctamente la tarifa de día" + ex.toString());
+                  
+               }
+    
+    }
+      
 }
 
 

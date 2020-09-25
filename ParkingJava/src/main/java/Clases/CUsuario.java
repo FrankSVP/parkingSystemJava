@@ -5,10 +5,12 @@
  */
 package Clases;
 
+import java.math.BigDecimal;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -112,5 +114,85 @@ public class CUsuario {
        }
        
        
+    }
+          
+         public void modificarUsuario( JTextField codigoUsuario, JTextField idusuario, JTextField contrausuario, JTextField codigoTipoUsuario)
+    {
+       Conexion.CConexion conexion = new Conexion.CConexion();
+    
+       
+       
+     String consulta =("select modificarUsuario(?,?,?,?);");
+    
+               try {
+              
+         CallableStatement cs = conexion.ConexionBD().prepareCall(consulta);
+         cs.setInt(1, Integer.parseInt(codigoUsuario.getText()));
+         cs.setString(2, idusuario.getText());
+         cs.setString(3, idusuario.getText());
+         cs.setInt(4, Integer.parseInt(codigoTipoUsuario.getText()));
+       
+     
+         
+      
+         cs.execute();
+     
+         
+         JOptionPane.showMessageDialog(null, "Se modificó correctamente el usuario, VERIFIQUE");
+                                                  
+               } 
+               catch (SQLException ex) 
+               {
+                   JOptionPane.showMessageDialog(null, "No se modificó correctamente el usuario" + ex.toString());
+                  
+               }
+    
+    }
+         
+      public void seleccionarUsuario(JTable totalEstadoAuto, JTextField codigoUsuario, JTextField idusuario,JTextField contrausuario, JComboBox codigoTipoUsuario)
+    {
+    
+        int fila = totalEstadoAuto.getSelectedRow();
+        
+        if (fila >=0) {
+            
+            codigoUsuario.setText(totalEstadoAuto.getValueAt(fila, 0).toString());
+            idusuario.setText(totalEstadoAuto.getValueAt(fila, 1).toString());
+            contrausuario.setText(totalEstadoAuto.getValueAt(fila, 2).toString());
+            codigoTipoUsuario.setSelectedItem(totalEstadoAuto.getValueAt(fila, 3).toString());
+  
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Fila no Seleccionada");
+        }
+        
+    }
+                    public void eliminarUsuario( JTextField codigoUsuario)
+    {
+       Conexion.CConexion conexion = new Conexion.CConexion();
+    
+       
+       
+     String consulta =("select eliminarusuario(?);");
+    
+               try {
+              
+         CallableStatement cs = conexion.ConexionBD().prepareCall(consulta);
+         cs.setInt(1, Integer.parseInt(codigoUsuario.getText()));
+
+ 
+         cs.execute();
+     
+         
+         JOptionPane.showMessageDialog(null, "Se eliminó correctamente el usuario, VERIFIQUE");
+                                                  
+               } 
+               catch (SQLException ex) 
+               {
+                   JOptionPane.showMessageDialog(null, "No se eliminó correctamente el usuario" + ex.toString());
+                  
+               }
+    
     }
 }

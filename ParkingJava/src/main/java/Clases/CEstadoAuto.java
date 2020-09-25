@@ -226,4 +226,31 @@ public class CEstadoAuto {
                }
     
     }
+              public void eliminarEstadoAuto( JTextField codigoEstadoAuto)
+    {
+       Conexion.CConexion conexion = new Conexion.CConexion();
+    
+       
+       
+     String consulta =("select eliminarestadoauto(?);");
+    
+               try {
+              
+         CallableStatement cs = conexion.ConexionBD().prepareCall(consulta);
+         cs.setInt(1, Integer.parseInt(codigoEstadoAuto.getText()));
+
+ 
+         cs.execute();
+     
+         
+         JOptionPane.showMessageDialog(null, "Se eliminó correctamente el estado de auto, VERIFIQUE");
+                                                  
+               } 
+               catch (SQLException ex) 
+               {
+                   JOptionPane.showMessageDialog(null, "No se eliminó correctamente el estado de auto" + ex.toString());
+                  
+               }
+    
+    }
 }

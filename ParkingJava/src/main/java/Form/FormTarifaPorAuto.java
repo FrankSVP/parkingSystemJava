@@ -94,6 +94,11 @@ public class FormTarifaPorAuto extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(31, 171, 137));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Eliminar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(45, 45, 45));
@@ -294,6 +299,12 @@ public class FormTarifaPorAuto extends javax.swing.JFrame {
        tarifaPorAuto.MostrarTotalDeTarifaPorAuto(tbtotaltarifaauto);
        
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       Clases.CTarifaPorAuto tarifaPorAuto = new Clases.CTarifaPorAuto();
+       tarifaPorAuto.eliminarTarifaPorAuto(txtIdTarifaPorAuto);
+       tarifaPorAuto.MostrarTotalDeTarifaPorAuto(tbtotaltarifaauto);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

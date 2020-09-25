@@ -196,6 +196,10 @@ select typecar.typcar from typecar;
 create view comboestadoauto as
 select statecar.statecar from statecar;
 
+//Vista de combopreciodia 
+create view combopreciodia as
+select rateday.priceday from rateday;
+
 //Vista de Total de Usuarios
 select statecar.statecar from statecar;
 
@@ -244,6 +248,9 @@ select rateday.id from rateday where rateday.priceday = precio;
 $$
 language SQL
 
+select * from  rateday;
+
+
 //Función para mostrar id de usuario por dia tipo de usuario
 CREATE OR REPLACE Function mostraridportipousuario (usuario varchar)returns integer
 AS
@@ -283,6 +290,8 @@ $$
 select statecar.id from statecar where statecar.statecar = estadoauto;
 $$
 language SQL
+
+
 //------------------------------------------------INSERTS--------------------------------------//
 
 //Función de insertar un nuevo usuario
@@ -411,3 +420,73 @@ $$
 UPDATE ratecar set fktypecar =codigotipoauto, fkratehour = codigopreciohora, fkrateday=codigopreciodia  WHERE ratecar.id= codigo;
 $$
 language SQL
+
+CREATE OR REPLACE Function modificarUsuario (codigo int, idusuario varchar(10), passusuario varchar(10), codigotipousuario int)returns void
+AS
+$$
+UPDATE account set userid = idusuario, pass=passusuario ,fktypeaccount =codigotipousuario  WHERE account.id= codigo;
+$$
+language SQL
+
+
+
+select * from account;
+
+//Función para Eliminar Tarfia Dia
+CREATE OR REPLACE Function eliminartarifadia (codigo int)returns void
+AS
+$$
+DELETE from rateday where rateday.id =codigo;
+$$
+language SQL
+
+//Función para Eliminar Tarfia Hora
+CREATE OR REPLACE Function eliminartarifahora (codigo int)returns void
+AS
+$$
+DELETE from rateour where rateour.id =codigo;
+$$
+language SQL
+
+//Función para Eliminar Tarfia Hora
+CREATE OR REPLACE Function eliminartipopago (codigo int)returns void
+AS
+$$
+DELETE from typepay where typepay.id =codigo;
+$$
+language SQL
+
+//Función para Eliminar Marca de auto
+CREATE OR REPLACE Function eliminarmarcaauto (codigo int)returns void
+AS
+$$
+DELETE from marcacar where marcacar.id =codigo;
+$$
+language SQL
+
+//Función para Eliminar Estado de auto
+CREATE OR REPLACE Function eliminarestadoauto (codigo int)returns void
+AS
+$$
+DELETE from statecar where statecar.id =codigo;
+$$
+language SQL
+
+//Función para Eliminar Tarifa por auto
+CREATE OR REPLACE Function eliminartarifaporauto (codigo int)returns void
+AS
+$$
+DELETE from ratecar where ratecar.id =codigo;
+$$
+language SQL
+
+//Función para Eliminar Tarifa por auto
+CREATE OR REPLACE Function eliminarusuario (codigo int)returns void
+AS
+$$
+DELETE from account where account.id =codigo;
+$$
+language SQL
+
+
+
