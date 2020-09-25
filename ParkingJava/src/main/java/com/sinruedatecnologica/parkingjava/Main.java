@@ -17,7 +17,7 @@ public class Main {
         Form.FormLogin formlogin = new Form.FormLogin();
         formlogin.setVisible(true);
         
-      
+    
     }
     
 }

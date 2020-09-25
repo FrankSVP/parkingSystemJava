@@ -129,7 +129,8 @@ select * from rateday;
 
 //Muestra todas las tarifas por hora
 create view totaltarifahora as
-select * from ratehour;
+select * from rateour;
+
 //Muestra el total de tipo de pago e ingresa 3 registros
 insert into typepay (typepay) values ('Efectivo');
 insert into typepay (typepay) values ('Tarjeta');
@@ -164,7 +165,7 @@ insert into sex(sex) values ('Femenino');
 
 //Vista para mostrar solo los precios por hora en el combobox
 create view combopreciohora as
-select ratehour.pricehour from ratehour;
+select rateour.pricehour from rateour;
 select * from combopreciohora;
 
 //Se insertó 3 registros de los tipos de autos
@@ -193,6 +194,7 @@ select typecar.typcar from typecar;
 
 //Vista de commboestado de auto
 create view comboestadoauto as
+select statecar.statecar from statecar;
 
 //Vista de Total de Usuarios
 select statecar.statecar from statecar;
@@ -203,9 +205,9 @@ INNER JOIN typeaccount ON account.fktypeaccount = typeaccount.id ;
 
 //Vista de Total de Tarfida de Autos
 create view totaltarifaauto as
-select ratecar.id ,typecar.typcar, ratehour.pricehour, rateday.priceday from ratecar
+select ratecar.id ,typecar.typcar, rateour.pricehour, rateday.priceday from ratecar
 INNER JOIN typecar ON ratecar.fktypecar = typecar.id
-INNER JOIN ratehour ON ratecar.fkratehour = ratehour.id
+INNER JOIN rateour ON ratecar.fkratehour = rateour.id
 INNER JOIN rateday ON ratecar.fkrateday= rateday.id
 
 //Vista de Total de Autos
@@ -230,7 +232,7 @@ language SQL
 CREATE OR REPLACE Function mostraridporpreciohora (precio decimal)returns integer
 AS
 $$
-select ratehour.id from ratehour where ratehour.pricehour = precio;
+select rateour.id from rateour where rateour.pricehour = precio;
 $$
 language SQL
 
@@ -305,7 +307,7 @@ language SQL
 CREATE OR REPLACE Function insertartarifahora (preciohora decimal)returns void
 AS
 $$
-insert into ratehour (pricehour) values (preciohora);
+insert into rateour (pricehour) values (preciohora);
 $$
 language SQL
 
@@ -371,7 +373,7 @@ language SQL
 CREATE OR REPLACE Function modificartarifahora (codigo int, nuevopreciohora decimal(4,2))returns void
 AS
 $$
-UPDATE ratehour set pricehour =nuevopreciohora WHERE ratehour.id= codigo;
+UPDATE rateour set pricehour =nuevopreciohora WHERE rateour.id= codigo;
 $$
 language SQL
 
@@ -409,4 +411,3 @@ $$
 UPDATE ratecar set fktypecar =codigotipoauto, fkratehour = codigopreciohora, fkrateday=codigopreciodia  WHERE ratecar.id= codigo;
 $$
 language SQL
-
