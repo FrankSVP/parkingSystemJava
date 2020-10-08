@@ -200,6 +200,12 @@ select statecar.statecar from statecar;
 create view combopreciodia as
 select rateday.priceday from rateday;
 
+//Vista de combomarca 
+create view comboMarca as
+select marcacar.marcacar from marcacar;
+
+select * from comboMarca;
+
 //Vista de Total de Usuarios
 select statecar.statecar from statecar;
 
@@ -291,6 +297,15 @@ select statecar.id from statecar where statecar.statecar = estadoauto;
 $$
 language SQL
 
+//Función para mostrar id por TipoDeAuto
+CREATE OR REPLACE Function mostrarIdPorTipoAuto(tipoauto varchar)returns integer
+AS
+$$
+select typecar.id from typecar where typecar.typcar = tipoauto;
+$$
+language SQL
+
+select mostrarIdPorTipoAuto('Camioneta');
 
 //------------------------------------------------INSERTS--------------------------------------//
 
@@ -488,5 +503,35 @@ DELETE from account where account.id =codigo;
 $$
 language SQL
 
+//Función para Modificar Tipo de Auto
+CREATE OR REPLACE Function modificarTipoAuto (codigo int, tipoauto varchar(50))returns void
+AS
+$$
+UPDATE typecar set typcar = tipoauto WHERE typecar.id= codigo;
+$$
+language SQL
+
+//Función para Eliminar Tarifa por auto
+CREATE OR REPLACE Function eliminarTipoAuto (codigo int)returns void
+AS
+$$
+DELETE from typecar where typecar.id =codigo;
+$$
+language SQL
+
+//Función para Eliminar Auto
+CREATE OR REPLACE Function eliminarAuto (codigo int)returns void
+AS
+$$
+DELETE from car where car.id =codigo;
+$$
+language SQL
 
 
+//Función para Modificar Auto
+CREATE OR REPLACE Function modificarAuto (codigo int, matricula varchar(6),colornuevo varchar(30), codmarca int ,codtipo int,codestado int)returns void
+AS
+$$
+UPDATE car set numbercar = matricula, color=colornuevo,fkmarcacar=codmarca, fktypecar=codtipo, fkstatecar=codestado  WHERE car.id= codigo;
+$$
+language SQL

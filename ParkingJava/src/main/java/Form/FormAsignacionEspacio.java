@@ -63,7 +63,7 @@ public class FormAsignacionEspacio extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(45, 45, 45)));
 
         jLabel1.setForeground(new java.awt.Color(45, 45, 45));
-        jLabel1.setText("Tarifa de Hora");
+        jLabel1.setText("Identificación");
 
         btnlogin.setBackground(new java.awt.Color(157, 243, 196));
         btnlogin.setForeground(new java.awt.Color(255, 255, 255));
@@ -76,7 +76,7 @@ public class FormAsignacionEspacio extends javax.swing.JFrame {
 
         btnlogin1.setBackground(new java.awt.Color(157, 243, 196));
         btnlogin1.setForeground(new java.awt.Color(255, 255, 255));
-        btnlogin1.setText("Crear");
+        btnlogin1.setText("Nuevo Cliente");
         btnlogin1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnlogin1ActionPerformed(evt);
@@ -95,7 +95,7 @@ public class FormAsignacionEspacio extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnlogin, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnlogin1, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                .addComponent(btnlogin1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(

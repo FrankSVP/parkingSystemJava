@@ -42,6 +42,7 @@ public class FormTipoAuto extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbtipoauto = new javax.swing.JTable();
+        txtIdTipoAuto = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -88,10 +89,20 @@ public class FormTipoAuto extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(31, 171, 137));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Modificar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(31, 171, 137));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Eliminar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         tbtipoauto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -104,6 +115,11 @@ public class FormTipoAuto extends javax.swing.JFrame {
 
             }
         ));
+        tbtipoauto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbtipoautoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbtipoauto);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -123,15 +139,23 @@ public class FormTipoAuto extends javax.swing.JFrame {
                                 .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtIdTipoAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(txtIdTipoAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -154,6 +178,27 @@ public class FormTipoAuto extends javax.swing.JFrame {
          tipoauto.MostrarTipoAuto(tbtipoauto);
          txttipoauto.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tbtipoautoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbtipoautoMouseClicked
+       Clases.CTipoAuto tipoAuto = new Clases.CTipoAuto();
+       tipoAuto.seleccionarTipoAuto(tbtipoauto, txtIdTipoAuto, txttipoauto);
+    }//GEN-LAST:event_tbtipoautoMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Clases.CTipoAuto tipoAuto = new Clases.CTipoAuto();
+        tipoAuto.modificartipoAuto(txtIdTipoAuto, txttipoauto);
+        tipoAuto.MostrarTipoAuto(tbtipoauto);
+        txtIdTipoAuto.setText("");
+        txttipoauto.setText("");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       Clases.CTipoAuto tipoAuto = new Clases.CTipoAuto();
+        tipoAuto.eliminarTipoAuto(txtIdTipoAuto);
+        tipoAuto.MostrarTipoAuto(tbtipoauto);
+        txtIdTipoAuto.setText("");
+        txttipoauto.setText("");
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -199,6 +244,7 @@ public class FormTipoAuto extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbtipoauto;
+    private javax.swing.JTextField txtIdTipoAuto;
     private javax.swing.JTextField txttipoauto;
     // End of variables declaration//GEN-END:variables
 }

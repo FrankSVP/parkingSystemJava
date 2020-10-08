@@ -69,6 +69,7 @@ public class FormAuto extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btnAsignarEspacio = new javax.swing.JButton();
+        txtCodigoAuto = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -190,10 +191,20 @@ public class FormAuto extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(31, 171, 137));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Modificar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(31, 171, 137));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Eliminar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         tbtotalautos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -206,6 +217,11 @@ public class FormAuto extends javax.swing.JFrame {
 
             }
         ));
+        tbtotalautos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbtotalautosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbtotalautos);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -252,7 +268,9 @@ public class FormAuto extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(303, 303, 303)
+                        .addGap(169, 169, 169)
+                        .addComponent(txtCodigoAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
                         .addComponent(jLabel6)))
                 .addContainerGap())
         );
@@ -260,8 +278,10 @@ public class FormAuto extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6)
-                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtCodigoAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -313,6 +333,31 @@ public class FormAuto extends javax.swing.JFrame {
         FormAsignacionEspacio formasignacionespacio =new FormAsignacionEspacio();
        formasignacionespacio.setVisible(true);
     }//GEN-LAST:event_btnAsignarEspacioActionPerformed
+
+    private void tbtotalautosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbtotalautosMouseClicked
+      Clases.CAuto auto = new Clases.CAuto();
+      //JTable tablaTotalAuto, JTextField codigoAuto,
+            //JTextField Matricula, JTextField Color, JTextField Marca, JTextField Tipo, JTextField Estado)
+      auto.SeleccionarAutoTotal(tbtotalautos, txtCodigoAuto, txtmatricula, txtcolor, cbmarcaauto, cbtipoauto, cbestadoauto);
+    }//GEN-LAST:event_tbtotalautosMouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+      Clases.CAuto auto = new Clases.CAuto();
+      auto.eliminarAuto(txtCodigoAuto);
+      auto.MostrarAutos(tbtotalautos);
+      txtCodigoAuto.setText("");
+      txtmatricula.setText("");
+      txtcolor.setText("");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+      Clases.CAuto auto = new Clases.CAuto();
+      auto.modificarAuto(txtCodigoAuto,txtmatricula,txtcolor,txtidmarca,txtidtipo,txtidestado);
+      auto.MostrarAutos(tbtotalautos);
+      txtCodigoAuto.setText("");
+      txtmatricula.setText("");
+      txtcolor.setText("");
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -368,6 +413,7 @@ public class FormAuto extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbtotalautos;
+    private javax.swing.JTextField txtCodigoAuto;
     private javax.swing.JTextField txtcolor;
     private javax.swing.JTextField txtidestado;
     private javax.swing.JTextField txtidmarca;

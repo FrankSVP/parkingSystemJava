@@ -79,7 +79,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnlogin" pref="80" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnlogin1" pref="110" max="32767" attributes="0"/>
+                  <Component id="btnlogin1" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -105,7 +105,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="2d" green="2d" red="2d" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Tarifa de Hora"/>
+            <Property name="text" type="java.lang.String" value="Identificaci&#xf3;n"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField1">
@@ -132,7 +132,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Crear"/>
+            <Property name="text" type="java.lang.String" value="Nuevo Cliente"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnlogin1ActionPerformed"/>

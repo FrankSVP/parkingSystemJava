@@ -5,6 +5,7 @@
  */
 package Clases;
 
+import java.math.BigDecimal;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -158,7 +159,7 @@ public class CTipoAuto {
          
        //   double tarifdiadb = Double.parseDouble(combotarifadia.getSelectedItem().toString());
           
-        String consulta =("select mostraridportipoauto(?)");
+        String consulta =("select mostrarIdPorTipoAuto(?)");
        
                try {
               
@@ -182,4 +183,79 @@ public class CTipoAuto {
                }
         
         }
+       
+          public void seleccionarTipoAuto(JTable totalTipoAuto, JTextField codigoTipoAuto, JTextField tipoAuto)
+    {
+    
+        int fila = totalTipoAuto.getSelectedRow();
+        
+        if (fila >=0) {
+            
+            codigoTipoAuto.setText(totalTipoAuto.getValueAt(fila, 0).toString());
+            tipoAuto.setText(totalTipoAuto.getValueAt(fila, 1).toString());
+  
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Fila no Seleccionada");
+        }
+        
+    }
+          
+         public void modificartipoAuto( JTextField codigoTipoAuto, JTextField tipoAuto)
+    {
+       Conexion.CConexion conexion = new Conexion.CConexion();
+    
+       
+     String consulta =("select modificarTipoAuto(?,?)");
+    
+               try {
+              
+         CallableStatement cs = conexion.ConexionBD().prepareCall(consulta);
+         cs.setInt(1, Integer.parseInt(codigoTipoAuto.getText()));
+         cs.setString(2, tipoAuto.getText());
+     
+         
+      
+         cs.execute();
+     
+         
+         JOptionPane.showMessageDialog(null, "Se modificó correctamente el tipo de Auto, VERIFIQUE");
+                                                  
+               } 
+               catch (SQLException ex) 
+               {
+                   JOptionPane.showMessageDialog(null, "No se modificó correctamente los datos" + ex.toString());
+                  
+               }
+    
+    }
+         
+          public void eliminarTipoAuto( JTextField codigoTipoAuto)
+    {
+       Conexion.CConexion conexion = new Conexion.CConexion();
+    
+       
+       
+     String consulta =("select eliminarTipoAuto(?);");
+    
+               try {
+              
+         CallableStatement cs = conexion.ConexionBD().prepareCall(consulta);
+         cs.setInt(1, Integer.parseInt(codigoTipoAuto.getText()));
+
+ 
+         cs.execute();
+     
+         
+         JOptionPane.showMessageDialog(null, "Se eliminó correctamente el tipo de auto, VERIFIQUE");
+                                                  
+               } 
+               catch (SQLException ex) 
+               {
+                   JOptionPane.showMessageDialog(null, "No se eliminó correctamente la marca de auto" + ex.toString());
+                  
+               }
+    
+    }
 }

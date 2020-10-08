@@ -9,6 +9,7 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -122,14 +123,42 @@ public class CAuto {
        
     }
         
-  public void SeleccionarAuto (JTable tablaTotalAuto, JTextField codigo, JTextField Marca){
+  public void SeleccionarAuto (JTable tablaTotalAuto, JTextField codigo, JTextField Marca){{
       
       int fila = tablaTotalAuto.getSelectedRow();
       
       if (fila >=0)
           {
           codigo.setText(tablaTotalAuto.getValueAt(fila,0).toString()); 
-          Marca.setText(tablaTotalAuto.getValueAt(fila,3).toString()); 
+          codigo.setText(tablaTotalAuto.getValueAt(fila,3).toString()); 
+          
+      }
+      else
+      {
+      JOptionPane.showMessageDialog(null, "Fila no seleccionada");
+      }
+              
+      
+  }
+  
+ 
+  }
+  
+     public void SeleccionarAutoTotal (JTable tablaTotalAuto, JTextField codigoAuto,
+            JTextField Matricula, JTextField Color, JComboBox Marca, JComboBox Tipo, JComboBox Estado){
+      
+      int fila = tablaTotalAuto.getSelectedRow();
+      
+      if (fila >=0)
+          {
+          codigoAuto.setText(tablaTotalAuto.getValueAt(fila,0).toString()); 
+          Matricula.setText(tablaTotalAuto.getValueAt(fila,1).toString()); 
+          Color.setText(tablaTotalAuto.getValueAt(fila,2).toString());
+          Marca.setSelectedItem(tablaTotalAuto.getValueAt(fila, 3).toString());
+          Tipo.setSelectedItem(tablaTotalAuto.getValueAt(fila, 4).toString());
+          Estado.setSelectedItem(tablaTotalAuto.getValueAt(fila, 5).toString());
+          
+          
       }
       else
       {
@@ -139,5 +168,64 @@ public class CAuto {
       
   }
      
+             public void eliminarAuto( JTextField codigoAuto)
+    {
+       Conexion.CConexion conexion = new Conexion.CConexion();
+    
+       
+       
+     String consulta =("select eliminarAuto(?);");
+    
+               try {
+              
+         CallableStatement cs = conexion.ConexionBD().prepareCall(consulta);
+         cs.setInt(1, Integer.parseInt(codigoAuto.getText()));
+
+ 
+         cs.execute();
+     
+         
+         JOptionPane.showMessageDialog(null, "Se eliminó correctamente el auto, VERIFIQUE");
+                                                  
+               } 
+               catch (SQLException ex) 
+               {
+                   JOptionPane.showMessageDialog(null, "No se eliminó correctamente la marca de auto" + ex.toString());
+                  
+               }
+    
+    }
+             
+                  public void modificarAuto( JTextField codigoAuto, JTextField matricula, JTextField color, JTextField codMarca, JTextField codTipo, JTextField codEstado)
+    {
+       Conexion.CConexion conexion = new Conexion.CConexion();
+    
+   
+       
+     String consulta =("select modificarAuto(?,?,?,?,?,?);");
+    
+               try {
+              
+         CallableStatement cs = conexion.ConexionBD().prepareCall(consulta);
+         cs.setInt(1, Integer.parseInt(codigoAuto.getText()));
+         cs.setString(2, matricula.getText());
+         cs.setString(3, color.getText());
+         cs.setInt(4, Integer.parseInt(codMarca.getText()));
+         cs.setInt(5, Integer.parseInt(codTipo.getText()));
+         cs.setInt(6, Integer.parseInt(codEstado.getText()));
+ 
+         cs.execute();
+     
+         
+         JOptionPane.showMessageDialog(null, "Se modificó correctamente el auto, VERIFIQUE");
+                                                  
+               } 
+               catch (SQLException ex) 
+               {
+                   JOptionPane.showMessageDialog(null, "No se modificó correctamente los datos" + ex.toString());
+                  
+               }
+    
+    }
     
 }
