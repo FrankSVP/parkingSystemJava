@@ -227,6 +227,19 @@ INNER JOIN marcacar  ON marcacar.id= car.fkmarcacar
 INNER JOIN typecar ON typecar.id = car.fktypecar
 INNER JOIN statecar ON statecar.id = car.fkstatecar
 
+//Vista de Total de Clientes
+create view totalclientes as
+select client.id, client.identification, client.firstname, client.lasttname, client.phone,client.address, 
+sex.sex,
+car.numbercar,car.color,
+marcacar.marcacar
+from client
+INNER JOIN sex  ON sex.id= client.fksexo
+INNER JOIN car ON car.id = client.fkcar
+INNER JOIN marcacar ON marcacar.id = car.fkmarcacar
+
+select *  from totalclientes;
+
 //---------------------------------------------------FUNCIONES---------------------------------//
 
 //Función para mostrar id de tipo de auto por nombre de auto
@@ -533,5 +546,21 @@ CREATE OR REPLACE Function modificarAuto (codigo int, matricula varchar(6),color
 AS
 $$
 UPDATE car set numbercar = matricula, color=colornuevo,fkmarcacar=codmarca, fktypecar=codtipo, fkstatecar=codestado  WHERE car.id= codigo;
+$$
+language SQL
+
+//Función de insertar Cliente
+CREATE OR REPLACE Function insertarcliente (nombre varchar(100), apellido varchar(100), identificacion varchar(8), telefono integer, direccion varchar(200),codsexo int, codauto int)returns void
+AS
+$$
+insert into client (firstname,lasttname,identification,phone,address,fksexo,fkcar) values (nombre,apellido,identificacion,telefono,direccion,codsexo,codauto);
+$$
+language SQL
+
+//Función para Modificar Cliente
+CREATE OR REPLACE Function modificarcliente (codigo int, nombre varchar(100), apellido varchar(100), identificacion varchar(8), telefono integer, direccion varchar(200),codsexo int)returns void
+AS
+$$
+UPDATE client set firstname = nombre, lasttname=apellido,identification=identificacion, phone=telefono, address=direccion , fksexo=codsexo WHERE client.id= codigo;
 $$
 language SQL

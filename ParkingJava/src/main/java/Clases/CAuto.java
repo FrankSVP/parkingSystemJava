@@ -73,6 +73,7 @@ public class CAuto {
        
        
      modelo.addColumn("Id");
+     modelo.addColumn("Ident.");
      modelo.addColumn("Matricula");
       modelo.addColumn("Color");
      modelo.addColumn("Marca");
@@ -123,14 +124,16 @@ public class CAuto {
        
     }
         
-  public void SeleccionarAuto (JTable tablaTotalAuto, JTextField codigo, JTextField Marca){{
+  public void SeleccionarAuto (JTable tablaTotalAuto, JTextField codigo, JTextField Matricula, JTextField Color, JTextField Marca){{
       
       int fila = tablaTotalAuto.getSelectedRow();
       
       if (fila >=0)
           {
           codigo.setText(tablaTotalAuto.getValueAt(fila,0).toString()); 
-          codigo.setText(tablaTotalAuto.getValueAt(fila,3).toString()); 
+          Matricula.setText(tablaTotalAuto.getValueAt(fila,1).toString()); 
+          Color.setText(tablaTotalAuto.getValueAt(fila,2).toString()); 
+          Marca.setText(tablaTotalAuto.getValueAt(fila,3).toString());
           
       }
       else
