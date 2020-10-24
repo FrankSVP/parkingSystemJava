@@ -93,8 +93,17 @@ FOREIGN KEY (fktypeaccount) REFERENCES typeaccount (id) ON DELETE CASCADE ON UPD
 create table states (
 id SERIAL primary key,
 states varchar (30),
-spaces integer
+fktypespaces integer,
+FOREIGN KEY (fktypespaces) REFERENCES TypeState (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+
+
+create table TypeState (
+id SERIAL primary key,
+typestate varchar(50)
+);
+drop table states;
 
 create table parking (
 id SERIAL primary key,
@@ -107,6 +116,7 @@ FOREIGN KEY (fkclient) REFERENCES client (id) ON DELETE CASCADE ON UPDATE CASCAD
 FOREIGN KEY (fkaccount) REFERENCES account (id)ON DELETE CASCADE ON UPDATE CASCADE,
 FOREIGN KEY (fkstates) REFERENCES states (id)ON DELETE CASCADE ON UPDATE CASCADE
 );
+
 create table typepay (
 id SERIAL primary key,
 typepay varchar (30)
@@ -120,6 +130,9 @@ fktypepay integer,
 FOREIGN KEY (fkparking) REFERENCES parking (id)ON DELETE CASCADE ON UPDATE CASCADE,
 FOREIGN KEY (fktypepay) REFERENCES typepay (id)ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+
+
 
 //--------------------------------------------------------VIEWS ----------------------------------------//
 
@@ -240,6 +253,17 @@ INNER JOIN marcacar ON marcacar.id = car.fkmarcacar
 
 select *  from totalclientes;
 
+//Vista de Total de Tipoos de Estado
+create view totaltiposestado as
+select * from typestate;
+
+//Vista de combotipoestado 
+create view combotipoestado as
+select typestate.typestate from typestate;
+
+select * from  combotipoestado;
+
+
 //---------------------------------------------------FUNCIONES---------------------------------//
 
 //Función para mostrar id de tipo de auto por nombre de auto
@@ -319,6 +343,14 @@ $$
 language SQL
 
 select mostrarIdPorTipoAuto('Camioneta');
+
+//Función para mostrar id por TipoDeAuto
+CREATE OR REPLACE Function mostrarIdPorTipoEstado(tipoestado varchar)returns integer
+AS
+$$
+select typestate.id from typestate where typestate.typestate = tipoestado;
+$$
+language SQL
 
 //------------------------------------------------INSERTS--------------------------------------//
 
@@ -564,3 +596,37 @@ $$
 UPDATE client set firstname = nombre, lasttname=apellido,identification=identificacion, phone=telefono, address=direccion , fksexo=codsexo WHERE client.id= codigo;
 $$
 language SQL
+
+//Función para Eliminar Cliente
+CREATE OR REPLACE Function eliminarCliente (codigo int)returns void
+AS
+$$
+DELETE from client where client.id =codigo;
+$$
+language SQL
+
+
+//Función de insertar TipoEstado
+CREATE OR REPLACE Function insertarTipoEstado (tipoestado varchar(50))returns void
+AS
+$$
+insert into typestate (typestate) values (tipoestado);
+$$
+language SQL
+
+//Eliminar Tipo de Estado
+CREATE OR REPLACE Function eliminarTipoEstado (codigo int)returns void
+AS
+$$
+DELETE from typestate where typestate.id =codigo;
+$$
+language SQL
+
+//Función para Modificar el Tipo de Estado
+CREATE OR REPLACE Function modificarTipoEstado (codigo int, tipoestado varchar(100))returns void
+AS
+$$
+UPDATE typestate set typestate = tipoestado  WHERE typestate.id= codigo;
+$$
+language SQL
+
