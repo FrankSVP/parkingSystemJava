@@ -270,8 +270,8 @@ public class FormAsignacionEspacio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnloginActionPerformed
 
     private void btnlogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogin1ActionPerformed
-       FormClientes formclientes = new FormClientes();
-       formclientes.setVisible(true);
+      /* FormClientes formclientes = new FormClientes();
+       formclientes.setVisible(true);*/
     }//GEN-LAST:event_btnlogin1ActionPerformed
 
     private void btnlogin2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogin2ActionPerformed

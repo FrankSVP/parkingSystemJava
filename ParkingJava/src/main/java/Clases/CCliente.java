@@ -192,4 +192,32 @@ public class CCliente {
                }
     
     }
+            
+                          public void eliminarCliente( JTextField codigoCliente)
+    {
+       Conexion.CConexion conexion = new Conexion.CConexion();
+    
+       
+       
+     String consulta =("select eliminarCliente(?);");
+    
+               try {
+              
+         CallableStatement cs = conexion.ConexionBD().prepareCall(consulta);
+         cs.setInt(1, Integer.parseInt(codigoCliente.getText()));
+
+ 
+         cs.execute();
+     
+         
+         JOptionPane.showMessageDialog(null, "Se eliminó correctamente el cliente de auto, VERIFIQUE");
+                                                  
+               } 
+               catch (SQLException ex) 
+               {
+                   JOptionPane.showMessageDialog(null, "No se eliminó correctamente el cliente de auto" + ex.toString());
+                  
+               }
+    
+    }
 }

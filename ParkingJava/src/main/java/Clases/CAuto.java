@@ -73,7 +73,6 @@ public class CAuto {
        
        
      modelo.addColumn("Id");
-     modelo.addColumn("Ident.");
      modelo.addColumn("Matricula");
       modelo.addColumn("Color");
      modelo.addColumn("Marca");
