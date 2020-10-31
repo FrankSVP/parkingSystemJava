@@ -90,11 +90,11 @@ FOREIGN KEY (fktypeaccount) REFERENCES typeaccount (id) ON DELETE CASCADE ON UPD
 );
 
 
-create table states (
+create table spaces (
 id SERIAL primary key,
-states varchar (30),
-fktypespaces integer,
-FOREIGN KEY (fktypespaces) REFERENCES TypeState (id) ON DELETE CASCADE ON UPDATE CASCADE
+spaces integer,
+fktypestates integer,
+FOREIGN KEY (fktypestates) REFERENCES TypeState (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -111,10 +111,10 @@ datetimestart timestamp,
 datetimeend timestamp,
 fkclient integer,
 fkaccount integer,
-fkstates integer,
+fkspaces integer,
 FOREIGN KEY (fkclient) REFERENCES client (id) ON DELETE CASCADE ON UPDATE CASCADE,
 FOREIGN KEY (fkaccount) REFERENCES account (id)ON DELETE CASCADE ON UPDATE CASCADE,
-FOREIGN KEY (fkstates) REFERENCES states (id)ON DELETE CASCADE ON UPDATE CASCADE
+FOREIGN KEY (fkspaces) REFERENCES spaces (id)ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table typepay (
@@ -263,6 +263,28 @@ select typestate.typestate from typestate;
 
 select * from  combotipoestado;
 
+//Vista de total de espacios
+create view totalespacios as
+select spaces.id,spaces.spaces, typestate.typestate from spaces
+INNER JOIN typestate ON typestate.id = spaces.fktypestates;
+
+//Vista de Total de Autos en el Estacionamiento
+create view totalAutosEstacionamiento as
+select parking.id, 
+car.numbercar,car.color,
+marcacar.marcacar,
+parking.datetimestart,
+parking.datetimeend,
+client.firstname, client.identification,
+typestate. typestate
+from parking
+INNER JOIN client ON client.id = parking.fkclient
+INNER JOIN spaces ON spaces.id = parking.fkspaces
+INNER JOIN typestate ON spaces.fktypestates = typestate.id
+INNER JOIN car ON car.id = client.fkcar
+INNER JOIN marcacar ON marcacar.id = car.fkmarcacar
+
+select * from totalAutosEstacionamiento;
 
 //---------------------------------------------------FUNCIONES---------------------------------//
 
@@ -630,3 +652,55 @@ UPDATE typestate set typestate = tipoestado  WHERE typestate.id= codigo;
 $$
 language SQL
 
+
+//Función de insertar Espacios
+CREATE OR REPLACE Function insertarEspacios (espacios int, tipoestado int)returns void
+AS
+$$
+insert into spaces (spaces,fktypestates) values (espacios,tipoestado);
+$$
+language SQL
+
+select insertarEspacios (10,1);
+
+select * from spaces;
+
+//Función para Modificar el Tipo de Estado
+CREATE OR REPLACE Function modificarEspacios (codigo int, espacios int, tipoestado int)returns void
+AS
+$$
+UPDATE spaces set spaces = espacios, fktypestates =tipoestado   WHERE spaces.id= codigo;
+$$
+language SQL
+
+//Eliminar Espacios
+CREATE OR REPLACE Function eliminarEspacio (codigo int)returns void
+AS
+$$
+DELETE from spaces where spaces.id =codigo;
+$$
+language SQL
+
+//Función para mostrar codigo de spaces Por codigoEstado
+CREATE OR REPLACE Function mostrarIdspacePorCodigoEstado(tipoestado varchar)returns integer
+AS
+$$
+select spaces.id from spaces
+INNER JOIN typestate ON typestate.id= spaces.fktypestates
+where typestate.typestate = tipoestado;
+$$
+language SQL
+
+
+//Función para insertar datos en el Parking
+CREATE OR REPLACE Function insertarParking(codcliente int,codcuenta int, codespacio int)returns void
+AS
+$$
+insert into parking (datetimestart,datetimeend,fkclient,fkaccount,fkspaces) values
+(current_timestamp,null,codcliente,codcuenta,codespacio)
+$$
+language SQL
+
+select  insertarParking(1,2,5);
+
+select * from parking;
