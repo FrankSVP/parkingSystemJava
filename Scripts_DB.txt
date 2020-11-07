@@ -286,6 +286,12 @@ INNER JOIN marcacar ON marcacar.id = car.fkmarcacar
 
 select * from totalAutosEstacionamiento;
 
+//Vista de combotipopago
+create view combotipopago as
+select typepay.typepay from typepay;
+
+select * from  combotipopago;
+
 //---------------------------------------------------FUNCIONES---------------------------------//
 
 //Función para mostrar id de tipo de auto por nombre de auto
@@ -704,3 +710,25 @@ language SQL
 select  insertarParking(1,2,5);
 
 select * from parking;
+
+select * from typepay;
+
+CREATE OR REPLACE Function mostraridportipopago (nombre varchar)returns integer
+AS
+$$
+select typepay.id from typepay where typepay.typepay = nombre;
+$$
+language SQL
+
+//Función para Incorporar Hora de Salida
+CREATE OR REPLACE Function insertarHoraSalida (codigo int)returns void
+AS
+$$
+UPDATE parking set datetimeend = current_timestamp  WHERE parking.id= codigo;
+$$
+language SQL
+
+select * from insertarHoraSalida(2);
+
+select * from parking;
+

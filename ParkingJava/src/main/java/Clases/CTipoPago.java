@@ -10,6 +10,8 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -186,4 +188,73 @@ public class CTipoPago {
                }
     
     }
+                
+     public void comboTipoPago(JComboBox cbTipoPago)
+    {
+      Conexion.CConexion conexion = new Conexion.CConexion();
+      
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+         
+        String sql="";
+
+     cbTipoPago.setModel(modelo);
+
+     sql = "select * from combotipopago;";
+ 
+    Statement st;
+    
+       try {
+            st = conexion.ConexionBD().createStatement(); 
+            
+            ResultSet rs =  st.executeQuery(sql);
+           // cbsexo.addItem("Sexo");
+           while(rs.next())
+            {
+               
+                String nombre=rs.getString(1);
+
+                cbTipoPago.addItem(nombre);
+            }
+           cbTipoPago.setModel(modelo);
+           
+   } 
+       catch (SQLException ex) 
+       {
+           System.out.println("Error:+ " +ex.toString());
+                   
+       }
+       
+       
+    }
+     
+        public void MostrarIdPorTipoPago(JComboBox comboTipoPago, JTextField codigo)               
+        {
+            
+            Conexion.CConexion conexion = new Conexion.CConexion();
+         
+        String consulta =("select mostraridportipopago(?)");
+ 
+               try {
+              
+         CallableStatement cs =conexion.ConexionBD().prepareCall(consulta);
+         cs.setString(1,comboTipoPago.getSelectedItem().toString());
+     
+         cs.execute();
+         ResultSet rs = cs.executeQuery();
+                 
+         
+                if(rs.next())
+                {
+                    
+                    codigo.setText(rs.getString("mostraridportipopago"));
+                   
+                }
+              
+               } 
+               catch (SQLException ex) 
+               {
+                    JOptionPane.showMessageDialog(null,"Error:" + ex.toString());
+               }
+        
+        }
 }
