@@ -691,12 +691,16 @@ language SQL
 CREATE OR REPLACE Function mostrarIdspacePorCodigoEstado(tipoestado varchar)returns integer
 AS
 $$
-select spaces.id from spaces
-INNER JOIN typestate ON typestate.id= spaces.fktypestates
+select  typestate.id from typestate
 where typestate.typestate = tipoestado;
 $$
 language SQL
 
+drop function mostrarIdspacePorCodigoEstado;
+
+select mostrarIdspacePorCodigoEstado('Libre');
+
+select * from typestate;
 
 //Función para insertar datos en el Parking
 CREATE OR REPLACE Function insertarParking(codcliente int,codcuenta int, codespacio int)returns void
