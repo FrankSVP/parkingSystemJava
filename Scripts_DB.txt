@@ -274,15 +274,19 @@ select parking.id,
 car.numbercar,car.color,
 marcacar.marcacar,
 parking.datetimestart,
-parking.datetimeend,
-client.firstname, client.identification,
-typestate. typestate
+client.firstname, 
+client.identification,
+typecar.typcar,
+statecar.statecar,
+typestate.typestate
 from parking
 INNER JOIN client ON client.id = parking.fkclient
 INNER JOIN spaces ON spaces.id = parking.fkspaces
 INNER JOIN typestate ON spaces.fktypestates = typestate.id
 INNER JOIN car ON car.id = client.fkcar
 INNER JOIN marcacar ON marcacar.id = car.fkmarcacar
+INNER JOIN typecar ON typecar.id = car.fktypecar
+INNER JOIN statecar ON statecar.id = car.fkstatecar
 
 select * from totalAutosEstacionamiento;
 
@@ -291,6 +295,9 @@ create view combotipopago as
 select typepay.typepay from typepay;
 
 select * from  combotipopago;
+
+
+
 
 //---------------------------------------------------FUNCIONES---------------------------------//
 
@@ -736,3 +743,4 @@ select * from insertarHoraSalida(2);
 
 select * from parking;
 
+select* from spaces;

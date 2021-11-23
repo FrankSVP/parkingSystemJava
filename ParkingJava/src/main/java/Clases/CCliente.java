@@ -220,4 +220,27 @@ public class CCliente {
                }
     
     }
+                          
+     public void seleccionarClienteParaParking(JTable totalCliente, JTextField idCliente, JTextField identificacion, JTextField nombre, JTextField apellido, JTextField matricula,JTextField marca, JTextField color)
+    {
+    
+        int fila = totalCliente.getSelectedRow();
+        
+        if (fila >=0) {
+            
+            idCliente.setText(totalCliente.getValueAt(fila, 0).toString());
+            identificacion.setText(totalCliente.getValueAt(fila, 1).toString());
+            nombre.setText(totalCliente.getValueAt(fila, 2).toString());
+            apellido.setText(totalCliente.getValueAt(fila, 3).toString());
+            matricula.setText(totalCliente.getValueAt(fila, 7).toString());
+            marca.setText(totalCliente.getValueAt(fila, 8).toString());
+            color.setText(totalCliente.getValueAt(fila, 9).toString()); 
+          
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Fila no Seleccionada");
+        }
+        
+    }
 }

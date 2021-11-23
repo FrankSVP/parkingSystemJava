@@ -158,5 +158,32 @@ public class CEstadoParking {
                }
         
         }
+        
+        
+        public void seleccionarEstadoParking(JTable totalestados, JTextField idEstado, JTextField estado, JTextField cantidad)
+    {
     
-}
+        int fila = totalestados.getSelectedRow();
+        
+        if (fila >=0) {
+            
+            idEstado.setText(totalestados.getValueAt(fila, 0).toString());
+            estado.setText(totalestados.getValueAt(fila, 1).toString());
+            cantidad.setText(totalestados.getValueAt(fila, 2).toString());
+          
+          
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Fila no Seleccionada");
+        }
+        
+    } 
+    }
+                          
+  
+        
+        
+        
+    
+
