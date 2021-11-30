@@ -38,15 +38,18 @@ public class CTotalEstacionamiento {
         
        
        
-     modelo.addColumn("Id");
+    modelo.addColumn("Id");
      modelo.addColumn("Matricula");
      modelo.addColumn("Color");
      modelo.addColumn("Marca");
-     modelo.addColumn("HoraEntrada");
-     modelo.addColumn("HoraSalida");
-     modelo.addColumn("Propietario");
+     modelo.addColumn("Fecha/Hora Inicio");
+     modelo.addColumn("Fecha/Hora Salida");
+     modelo.addColumn("Nombre Dueño");
      modelo.addColumn("Identificacion");
-      modelo.addColumn("Estado");
+     modelo.addColumn("Tipo Vehiculo");
+     modelo.addColumn("Estado Vehiculo");
+     modelo.addColumn("Estado Espacio");
+     modelo.addColumn("Espacio Fisico");
  
     
      
@@ -57,7 +60,7 @@ public class CTotalEstacionamiento {
      sql = "select * from totalAutosEstacionamiento;";
     
     
-    String [] datos= new String [9];
+    String [] datos= new String [12];
     Statement st;
     
        try {
@@ -70,13 +73,16 @@ public class CTotalEstacionamiento {
               
                datos[0]= rs.getString(1);
                datos[1]= rs.getString(2);
-                datos[2]= rs.getString(3);
+               datos[2]= rs.getString(3);
                datos[3]= rs.getString(4);
-                datos[4]= rs.getString(5);
+               datos[4]= rs.getString(5);
                datos[5]= rs.getString(6);
-                datos[6]= rs.getString(7);
+               datos[6]= rs.getString(7);
                datos[7]= rs.getString(8);
-                datos[8]= rs.getString(9);
+               datos[8]= rs.getString(9);
+               datos[9]= rs.getString(10);
+               datos[10]= rs.getString(11);
+               datos[11]= rs.getString(12);
                
              
                 

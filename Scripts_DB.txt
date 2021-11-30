@@ -274,19 +274,22 @@ select parking.id,
 car.numbercar,car.color,
 marcacar.marcacar,
 parking.datetimestart,
-client.firstname, 
-client.identification,
+parking.datetimeend,
+client.firstname, client.identification,
 typecar.typcar,
 statecar.statecar,
-typestate.typestate
+typestate. typestate,
+spaces.spaces
 from parking
 INNER JOIN client ON client.id = parking.fkclient
 INNER JOIN spaces ON spaces.id = parking.fkspaces
 INNER JOIN typestate ON spaces.fktypestates = typestate.id
 INNER JOIN car ON car.id = client.fkcar
 INNER JOIN marcacar ON marcacar.id = car.fkmarcacar
-INNER JOIN typecar ON typecar.id = car.fktypecar
-INNER JOIN statecar ON statecar.id = car.fkstatecar
+INNER JOIN typecar ON typecar.id =car.fktypecar
+INNER JOIN statecar ON statecar.id= car.fkstatecar;
+
+drop view totalAutosEstacionamiento;
 
 select * from totalAutosEstacionamiento;
 
@@ -295,9 +298,6 @@ create view combotipopago as
 select typepay.typepay from typepay;
 
 select * from  combotipopago;
-
-
-
 
 //---------------------------------------------------FUNCIONES---------------------------------//
 
@@ -698,16 +698,12 @@ language SQL
 CREATE OR REPLACE Function mostrarIdspacePorCodigoEstado(tipoestado varchar)returns integer
 AS
 $$
-select  typestate.id from typestate
+select spaces.id from spaces
+INNER JOIN typestate ON typestate.id= spaces.fktypestates
 where typestate.typestate = tipoestado;
 $$
 language SQL
 
-drop function mostrarIdspacePorCodigoEstado;
-
-select mostrarIdspacePorCodigoEstado('Libre');
-
-select * from typestate;
 
 //Función para insertar datos en el Parking
 CREATE OR REPLACE Function insertarParking(codcliente int,codcuenta int, codespacio int)returns void
@@ -743,4 +739,15 @@ select * from insertarHoraSalida(2);
 
 select * from parking;
 
-select* from spaces;
+
+//Función de insertar un el pago por el uso del parking
+CREATE OR REPLACE Function insertarPagoFinal (mount decimal(4,2), fkparking integer, fktypepay integer)returns void
+AS
+$$
+insert into pay (mount,datetimepay,fkparking,fktypepay) values (mount,current_timestamp,fkparking,fktypepay);
+$$
+language SQL
+
+select insertarPagoFinal(13.3,1,1);
+
+select * from pay;

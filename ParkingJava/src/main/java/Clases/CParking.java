@@ -77,11 +77,13 @@ public class CParking {
      modelo.addColumn("Color");
      modelo.addColumn("Marca");
      modelo.addColumn("Fecha/Hora Inicio");
+     modelo.addColumn("Fecha/Hora Salida");
      modelo.addColumn("Nombre Dueño");
      modelo.addColumn("Identificacion");
      modelo.addColumn("Tipo Vehiculo");
      modelo.addColumn("Estado Vehiculo");
      modelo.addColumn("Estado Espacio");
+     modelo.addColumn("Espacio Fisico");
      
      
  
@@ -93,7 +95,7 @@ public class CParking {
      sql = "select * from totalAutosEstacionamiento;";
     
     
-    String [] datos= new String [10];
+    String [] datos= new String [12];
     Statement st;
     
        try {
@@ -114,6 +116,8 @@ public class CParking {
                datos[7]= rs.getString(8);
                datos[8]= rs.getString(9);
                datos[9]= rs.getString(10);
+               datos[10]= rs.getString(11);
+               datos[11]= rs.getString(12);
            
              
                 
