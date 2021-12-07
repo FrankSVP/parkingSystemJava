@@ -77,10 +77,12 @@ public class FormPagar extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Pagar Estacionamiento");
 
-        btnPagar.setBackground(new java.awt.Color(157, 243, 196));
+        btnPagar.setBackground(new java.awt.Color(31, 171, 137));
         btnPagar.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         btnPagar.setForeground(new java.awt.Color(255, 255, 255));
+        btnPagar.setIcon(new javax.swing.ImageIcon("C:\\Users\\blood\\Documents\\NetBeansProjects\\parkingSystemJava\\ParkingJava\\src\\main\\java\\images\\icon_pay_tot.png")); // NOI18N
         btnPagar.setText("Pagar");
         btnPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -319,7 +321,7 @@ public class FormPagar extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel20.setText("Monto a Pagar");
 
-        lblMontoAPagar.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        lblMontoAPagar.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         lblMontoAPagar.setForeground(new java.awt.Color(0, 204, 0));
         lblMontoAPagar.setText("20");
 
@@ -337,10 +339,13 @@ public class FormPagar extends javax.swing.JFrame {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20)
-                    .addComponent(lblMontoAPagar))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(lblMontoAPagar))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel20)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
