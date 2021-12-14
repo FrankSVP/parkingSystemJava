@@ -38,10 +38,7 @@ public class CParking {
          cs.setInt(1, Integer.parseInt(codcliente.getText()));
          cs.setInt(2, Integer.parseInt(codCuenta.getText()));
          cs.setInt(3, Integer.parseInt(codEspacio.getText()));
-         
-     
-         
-      
+ 
          cs.execute();
      
          
@@ -138,5 +135,68 @@ public class CParking {
        
        
     }
+         
+         
+           public void MostrarTotalEspaciosLibres(JLabel totalEspaciosLibres)               
+        {
+            
+            Conexion.CConexion conexion = new Conexion.CConexion();
+         
+        String consulta =("select TotalLibres();");
+ 
+               try {
+              
+         CallableStatement cs =conexion.ConexionBD().prepareCall(consulta);
+        
+     
+         cs.execute();
+         ResultSet rs = cs.executeQuery();
+                 
+         
+                if(rs.next())
+                {
+                    
+                    totalEspaciosLibres.setText(rs.getString("TotalLibres"));
+                   
+                }
+              
+               } 
+               catch (SQLException ex) 
+               {
+                    JOptionPane.showMessageDialog(null,"Error:" + ex.toString());
+               }
+        
+        }
+           
+                  public void MostrarTotalEspaciosOcupados(JLabel totalEspaciosOcupados)               
+        {
+            
+            Conexion.CConexion conexion = new Conexion.CConexion();
+         
+        String consulta =("select TotalOcupados();");
+ 
+               try {
+              
+         CallableStatement cs =conexion.ConexionBD().prepareCall(consulta);
+        
+     
+         cs.execute();
+         ResultSet rs = cs.executeQuery();
+                 
+         
+                if(rs.next())
+                {
+                    
+                    totalEspaciosOcupados.setText(rs.getString("TotalOcupados"));
+                   
+                }
+              
+               } 
+               catch (SQLException ex) 
+               {
+                    JOptionPane.showMessageDialog(null,"Error:" + ex.toString());
+               }
+        
+        }
      
 }

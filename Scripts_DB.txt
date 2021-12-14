@@ -751,3 +751,44 @@ language SQL
 select insertarPagoFinal(13.3,1,1);
 
 select * from pay;
+
+
+//Función para modificar estado de espacio Libre_a_Ocupado
+
+CREATE OR REPLACE Function libreAOcupado (codigo int)returns void
+AS
+$$
+UPDATE spaces set  fktypestates =2   WHERE spaces.id= codigo;
+$$
+language SQL
+
+
+//Función para mostrar el Total de Espacios Libres
+
+CREATE OR REPLACE Function TotalLibres() returns bigint
+AS
+$$
+select count(*) from spaces WHERE spaces.fktypestates=1;
+$$
+language SQL
+
+
+select TotalLibres();
+
+
+CREATE OR REPLACE Function TotalOcupados() returns bigint
+AS
+$$
+select count(*) from spaces WHERE spaces.fktypestates=2;
+$$
+language SQL
+
+select TotalOcupados();
+
+
+//Busqueda por Numero de Identificacion
+select client.id, client.firstname, client.lasttname, client.identification,
+client.phone, client.address, sex.sex from client
+INNER JOIN sex ON sex.id= client.fksexo
+WHERE client.identification='4234';
+

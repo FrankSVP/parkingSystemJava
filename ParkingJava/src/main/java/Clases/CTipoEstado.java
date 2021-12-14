@@ -254,4 +254,34 @@ public class CTipoEstado {
                }
         
         }
+     public void MostrarIdPorTipoEstadoTexto(JTextField tipoEstado, JTextField codigo)               
+        {
+            
+            Conexion.CConexion conexion = new Conexion.CConexion();
+         
+        String consulta =("select mostrarIdPorTipoEstado(?)");
+ 
+               try {
+              
+         CallableStatement cs =conexion.ConexionBD().prepareCall(consulta);
+         cs.setString(1,tipoEstado.getText());
+     
+         cs.execute();
+         ResultSet rs = cs.executeQuery();
+                 
+         
+                if(rs.next())
+                {
+                    
+                    codigo.setText(rs.getString("mostrarIdPorTipoEstado"));
+                   
+                }
+              
+               } 
+               catch (SQLException ex) 
+               {
+                    JOptionPane.showMessageDialog(null,"Error:" + ex.toString());
+               }
+        
+        }
 }

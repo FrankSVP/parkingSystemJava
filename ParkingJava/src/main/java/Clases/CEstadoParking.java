@@ -100,6 +100,38 @@ public class CEstadoParking {
     
     }
           
+      public void modificarLibreAOcupado( JTextField codigoestado)
+    {
+       Conexion.CConexion conexion = new Conexion.CConexion();
+    
+   
+       
+     String consulta =("select libreAOcupado(?);");
+    
+               try {
+              
+         CallableStatement cs = conexion.ConexionBD().prepareCall(consulta);
+         cs.setInt(1, Integer.parseInt(codigoestado.getText()));  
+       
+        
+ 
+         cs.execute();
+     
+         
+         JOptionPane.showMessageDialog(null, "Se modificó a Ocupado Correctamente, VERIFIQUE");
+                                                  
+               } 
+               catch (SQLException ex) 
+               {
+                   JOptionPane.showMessageDialog(null, "No se modificó correctamente los datos" + ex.toString());
+                  
+               }
+    
+    }
+          
+          
+          
+          
                    public void eliminarEstadoParking( JTextField codigoEstadoParking)
     {
        Conexion.CConexion conexion = new Conexion.CConexion();
