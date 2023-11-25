@@ -100,7 +100,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem7">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Tipo de Estado"/>
+                <Property name="text" type="java.lang.String" value="Tipo de Estado de Espacios"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem7ActionPerformed"/>
@@ -108,7 +108,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem8">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Estados de Parking"/>
+                <Property name="text" type="java.lang.String" value="Asignaci&#xf3;n de Lugares"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem8ActionPerformed"/>
@@ -228,9 +228,6 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\blood\Documents\NetBeansProjects\parkingSystemJava\ParkingJava\src\main\java\images\icon_car.png"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Registrar Vehiculo"/>
       </Properties>
       <Events>
@@ -280,9 +277,6 @@
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\blood\Documents\NetBeansProjects\parkingSystemJava\ParkingJava\src\main\java\images\icon_pay.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Pagar"/>
       </Properties>
@@ -409,9 +403,6 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\blood\Documents\NetBeansProjects\parkingSystemJava\ParkingJava\src\main\java\images\icon_time.png"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Marcar Salida"/>
       </Properties>
       <Events>
@@ -430,9 +421,6 @@
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\blood\Documents\NetBeansProjects\parkingSystemJava\ParkingJava\src\main\java\images\icon_car_parking.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Registrar Parking"/>
       </Properties>

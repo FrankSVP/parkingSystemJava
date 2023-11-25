@@ -78,7 +78,6 @@ public class FormMenu extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(31, 171, 137));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\blood\\Documents\\NetBeansProjects\\parkingSystemJava\\ParkingJava\\src\\main\\java\\images\\icon_car.png")); // NOI18N
         jButton1.setText("Registrar Vehiculo");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,7 +109,6 @@ public class FormMenu extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(31, 171, 137));
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\blood\\Documents\\NetBeansProjects\\parkingSystemJava\\ParkingJava\\src\\main\\java\\images\\icon_pay.png")); // NOI18N
         jButton3.setText("Pagar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,7 +173,6 @@ public class FormMenu extends javax.swing.JFrame {
         jButton4.setBackground(new java.awt.Color(255, 153, 51));
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\blood\\Documents\\NetBeansProjects\\parkingSystemJava\\ParkingJava\\src\\main\\java\\images\\icon_time.png")); // NOI18N
         jButton4.setText("Marcar Salida");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,7 +183,6 @@ public class FormMenu extends javax.swing.JFrame {
         btnRegistrarParking.setBackground(new java.awt.Color(102, 102, 255));
         btnRegistrarParking.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         btnRegistrarParking.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegistrarParking.setIcon(new javax.swing.ImageIcon("C:\\Users\\blood\\Documents\\NetBeansProjects\\parkingSystemJava\\ParkingJava\\src\\main\\java\\images\\icon_car_parking.png")); // NOI18N
         btnRegistrarParking.setText("Registrar Parking");
         btnRegistrarParking.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -291,7 +287,7 @@ public class FormMenu extends javax.swing.JFrame {
 
         jMenu7.setText("Estados");
 
-        jMenuItem7.setText("Tipo de Estado");
+        jMenuItem7.setText("Tipo de Estado de Espacios");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
@@ -299,7 +295,7 @@ public class FormMenu extends javax.swing.JFrame {
         });
         jMenu7.add(jMenuItem7);
 
-        jMenuItem8.setText("Estados de Parking");
+        jMenuItem8.setText("Asignación de Lugares");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem8ActionPerformed(evt);

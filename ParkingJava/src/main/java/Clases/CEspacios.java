@@ -36,7 +36,7 @@ public class CEspacios {
        
        
      modelo.addColumn("Id");
-     modelo.addColumn("Espacios");
+     modelo.addColumn("Lugar");
       modelo.addColumn("Estado");
  
      
